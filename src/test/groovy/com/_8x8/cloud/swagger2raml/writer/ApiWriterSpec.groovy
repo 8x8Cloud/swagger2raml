@@ -7,13 +7,11 @@ import com._8x8.cloud.swagger2raml.model.Post
 import com._8x8.cloud.swagger2raml.model.Put
 import com._8x8.cloud.swagger2raml.model.QueryParameter
 import com._8x8.cloud.swagger2raml.model.Resource
-import groovy.transform.TypeChecked
 import spock.lang.Specification
 
 /**
  * @author Jacek Kunicki
  */
-@TypeChecked
 class ApiWriterSpec extends Specification {
 
     private static File prepareOutputFile() {
@@ -83,6 +81,6 @@ class ApiWriterSpec extends Specification {
 
         then:
         def expectedFileContents = new File('src/test/resources/expected.raml').text
-        outputFile.getText() == expectedFileContents
+        outputFile.text == expectedFileContents
     }
 }
