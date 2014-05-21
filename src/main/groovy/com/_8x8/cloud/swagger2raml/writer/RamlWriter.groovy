@@ -3,7 +3,6 @@ package com._8x8.cloud.swagger2raml.writer
 import groovy.transform.TypeChecked
 import com._8x8.cloud.swagger2raml.model.Method
 import com._8x8.cloud.swagger2raml.model.QueryParameter
-import com._8x8.cloud.swagger2raml.model.RamlElement
 import com._8x8.cloud.swagger2raml.model.Resource
 
 /**

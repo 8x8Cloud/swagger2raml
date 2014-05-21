@@ -7,5 +7,5 @@ class Resource {
 
     String path
     Collection<Resource> children
-    Collection<Method> methods
+    Collection<? extends Method> methods
 }

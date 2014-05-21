@@ -29,7 +29,7 @@ class ApiWriterSpec extends Specification {
 
     def 'should write API to RAML file'() {
         setup:
-        def outputFile = prepareOutputFile()
+        File outputFile = prepareOutputFile()
 
         def resources = [
                 new Resource(
@@ -84,6 +84,6 @@ class ApiWriterSpec extends Specification {
 
         then:
         def expectedFileContents = new File('src/test/resources/expected.raml').text
-        outputFile.text.equals(expectedFileContents)
+        outputFile.getText() == expectedFileContents
     }
 }
