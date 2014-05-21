@@ -5,9 +5,11 @@ version = '1.0'
 repositories {
     mavenCentral()
     maven { url 'http://oss.sonatype.org/content/groups/public/' }
+    maven { url 'https://repository-master.mulesoft.org/releases/' }
 }
 
 dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.3.1'
     testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
+    testCompile 'org.raml:raml-parser:0.8.4'
 }
