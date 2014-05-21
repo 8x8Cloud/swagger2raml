@@ -1,0 +1,27 @@
+#%RAML 0.8
+---
+title: Test API
+baseUri: http://example.com
+version: 42
+/foo:
+  get:
+  post:
+  /foo1:
+    post:
+    delete:
+      description: delete foo1
+  /foo2:
+    get:
+      description: get foo2
+      queryParameters:
+        filter:
+          displayName: foo2 filter
+          type: string
+          description: value to filter by
+          example: xxx
+          required: false
+/bar:
+  post:
+    description: create bar
+/baz:
+  put:
