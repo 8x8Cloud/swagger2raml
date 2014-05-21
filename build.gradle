@@ -1,5 +1,7 @@
 apply plugin: 'groovy'
+apply plugin: 'maven'
 
+group = 'com._8x8.cloud.swagger2raml'
 version = '1.0'
 
 repositories {
