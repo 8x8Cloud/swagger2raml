@@ -1,4 +1,4 @@
-package com._8x8.cloud.swagger2raml
+package com._8x8.cloud.swagger2raml.writer
 
 import com._8x8.cloud.swagger2raml.model.Api
 import com._8x8.cloud.swagger2raml.model.Delete
@@ -7,7 +7,6 @@ import com._8x8.cloud.swagger2raml.model.Post
 import com._8x8.cloud.swagger2raml.model.Put
 import com._8x8.cloud.swagger2raml.model.QueryParameter
 import com._8x8.cloud.swagger2raml.model.Resource
-import com._8x8.cloud.swagger2raml.writer.ApiWriter
 import groovy.transform.TypeChecked
 import spock.lang.Specification
 
