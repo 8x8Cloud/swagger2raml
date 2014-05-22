@@ -1,0 +1,173 @@
+{"apiVersion": "1", "swaggerVersion": "1.2", "apis": [
+    {
+        "path": "/default/ad-controller",
+        "description": "AD Controller"
+    },
+    {
+        "path": "/default/ad-gpo-controller",
+        "description": "Ad Gpo Controller"
+    },
+    {
+        "path": "/default/ad-kms-controller",
+        "description": "Ad Kms Controller"
+    },
+    {
+        "path": "/default/ad-organization-unit-controller",
+        "description": "Ad Organization Unit Controller"
+    },
+    {
+        "path": "/default/ad-trust-controller",
+        "description": "Ad Trust Controller"
+    },
+    {
+        "path": "/default/ad-user-controller",
+        "description": "Ad User Controller"
+    },
+    {
+        "path": "/default/adgroup",
+        "description": "AdGroup"
+    },
+    {
+        "path": "/default/console-controller",
+        "description": "Console Controller"
+    },
+    {
+        "path": "/default/deep-security-controller",
+        "description": "Deep Security Controller"
+    },
+    {
+        "path": "/default/dektop",
+        "description": "Dektop"
+    },
+    {
+        "path": "/default/edge-controller",
+        "description": "Edge Controller"
+    },
+    {
+        "path": "/default/fw-controller",
+        "description": "Fw Controller"
+    },
+    {
+        "path": "/default/ha-controller",
+        "description": "HA Controller"
+    },
+    {
+        "path": "/default/infrastructure-controller",
+        "description": "Infrastructure Controller"
+    },
+    {
+        "path": "/default/nat-controller",
+        "description": "Nat Controller"
+    },
+    {
+        "path": "/default/network-controller",
+        "description": "Network Controller"
+    },
+    {
+        "path": "/default/org-controller",
+        "description": "Org Controller"
+    },
+    {
+        "path": "/default/props-controller",
+        "description": "Props Controller"
+    },
+    {
+        "path": "/default/provider-vdc-controller",
+        "description": "Provider Vdc Controller"
+    },
+    {
+        "path": "/default/redis-controller",
+        "description": "Redis Controller"
+    },
+    {
+        "path": "/default/snapshot-controller",
+        "description": "Snapshot Controller"
+    },
+    {
+        "path": "/default/sql-server-controller",
+        "description": "Sql Server Controller"
+    },
+    {
+        "path": "/default/ssl-vpn-controller",
+        "description": "Ssl Vpn Controller"
+    },
+    {
+        "path": "/default/ssl-vpn-ip-pool-controller",
+        "description": "Ssl Vpn Ip Pool Controller"
+    },
+    {
+        "path": "/default/ssl-vpn-user-controller",
+        "description": "Ssl Vpn User Controller"
+    },
+    {
+        "path": "/default/sso-controller",
+        "description": "SSO Controller"
+    },
+    {
+        "path": "/default/task-controller",
+        "description": "Task Controller"
+    },
+    {
+        "path": "/default/template-controller",
+        "description": "Template Controller"
+    },
+    {
+        "path": "/default/v-app-controller",
+        "description": "V App Controller"
+    },
+    {
+        "path": "/default/v-broker-controller",
+        "description": "V Broker Controller"
+    },
+    {
+        "path": "/default/v-center-inventory-service-controller",
+        "description": "V Center Inventory Service Controller"
+    },
+    {
+        "path": "/default/vdc-controller",
+        "description": "Vdc Controller"
+    },
+    {
+        "path": "/default/vi-controller",
+        "description": "VI Controller"
+    },
+    {
+        "path": "/default/view-composer-server-controller",
+        "description": "View Composer Server Controller"
+    },
+    {
+        "path": "/default/view-connection-server-controller",
+        "description": "View Connection Server Controller"
+    },
+    {
+        "path": "/default/view-transfer-server-controller",
+        "description": "View Transfer Server Controller"
+    },
+    {
+        "path": "/default/vix-vm-controller",
+        "description": "Vix VM Controller"
+    },
+    {
+        "path": "/default/vm-controller",
+        "description": "Vm Controller"
+    },
+    {
+        "path": "/default/vpn-controller",
+        "description": "Vpn Controller"
+    },
+    {
+        "path": "/default/vse-controller",
+        "description": "VSE Controller"
+    },
+    {
+        "path": "/default/vxvlan-controller",
+        "description": "Vxvlan Controller"
+    }
+], "info": {
+    "title": "default Title",
+    "description": "Api Description",
+    "termsOfServiceUrl": "Api terms of service",
+    "contact": "Contact Email",
+    "license": "Licence Type",
+    "licenseUrl": "License URL"
+}}

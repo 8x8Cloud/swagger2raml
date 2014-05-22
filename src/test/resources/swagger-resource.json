@@ -1,0 +1,1535 @@
+{"apiVersion": "1.0", "swaggerVersion": "1.2", "basePath": "/", "resourcePath": "fix this", "produces": ["application/json;charset=utf-8"], "apis": [
+    {
+        "path": "/ad/conditionalDnsForwarder",
+        "description": "createConditionalDnsForwarder",
+        "operations": [
+            {
+                "method": "POST",
+                "summary": "createConditionalDnsForwarder",
+                "notes": "createConditionalDnsForwarder",
+                "type": "PowerShellExecutionResult",
+                "nickname": "createConditionalDnsForwarder",
+                "produces": ["application/json;charset=utf-8"],
+                "parameters": [
+                    {
+                        "name": "version",
+                        "description": "version",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "path",
+                        "allowMultiple": false,
+                        "enum": ["1.5", "5.1"]
+                    },
+                    {
+                        "name": "vmName",
+                        "description": "vmName",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "guestUid",
+                        "description": "guestUid",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "guestPwd",
+                        "description": "guestPwd",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "sync",
+                        "description": "sync",
+                        "defaultValue": "false",
+                        "required": false,
+                        "type": "boolean",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "organizationUnitDto",
+                        "description": "organizationUnitDto",
+                        "defaultValue": "",
+                        "required": false,
+                        "type": "ConditionalDnsForwarderDto",
+                        "paramType": "body",
+                        "allowMultiple": false
+                    }
+                ],
+                "responseMessages": [
+                    {
+                        "code": 201,
+                        "message": "Created"
+                    },
+                    {
+                        "code": 404,
+                        "message": "Not Found"
+                    },
+                    {
+                        "code": 403,
+                        "message": "Forbidden"
+                    },
+                    {
+                        "code": 401,
+                        "message": "Unauthorized"
+                    },
+                    {
+                        "code": 200,
+                        "message": "OK",
+                        "responseModel": "PowerShellExecutionResult"
+                    }
+                ],
+                "deprecated": "false"
+            }
+        ]
+    },
+    {
+        "path": "/ad/domain/{domain}/pc",
+        "description": "addPcToDomain",
+        "operations": [
+            {
+                "method": "POST",
+                "summary": "addPcToDomain",
+                "notes": "addPcToDomain",
+                "type": "PowerShellExecutionResult",
+                "nickname": "addPcToDomain",
+                "produces": ["application/json;charset=utf-8"],
+                "parameters": [
+                    {
+                        "name": "version",
+                        "description": "version",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "path",
+                        "allowMultiple": false,
+                        "enum": ["1.5", "5.1"]
+                    },
+                    {
+                        "name": "vmName",
+                        "description": "vmName",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "guestUid",
+                        "description": "guestUid",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "guestPwd",
+                        "description": "guestPwd",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "username",
+                        "description": "username",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "password",
+                        "description": "password",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "domain",
+                        "description": "domain",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "path",
+                        "allowMultiple": false
+                    }
+                ],
+                "responseMessages": [
+                    {
+                        "code": 201,
+                        "message": "Created"
+                    },
+                    {
+                        "code": 404,
+                        "message": "Not Found"
+                    },
+                    {
+                        "code": 403,
+                        "message": "Forbidden"
+                    },
+                    {
+                        "code": 401,
+                        "message": "Unauthorized"
+                    },
+                    {
+                        "code": 200,
+                        "message": "OK",
+                        "responseModel": "PowerShellExecutionResult"
+                    }
+                ],
+                "deprecated": "false"
+            }
+        ]
+    },
+    {
+        "path": "/ad/join",
+        "description": "joinAd",
+        "operations": [
+            {
+                "method": "POST",
+                "summary": "joinAd",
+                "notes": "joinAd",
+                "type": "JsonResponse",
+                "nickname": "joinAd",
+                "parameters": [
+                    {
+                        "name": "version",
+                        "description": "version",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "path",
+                        "allowMultiple": false,
+                        "enum": ["1.5", "5.1"]
+                    },
+                    {
+                        "name": "vmName",
+                        "description": "vmName",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "guestUid",
+                        "description": "guestUid",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "serverName",
+                        "description": "serverName",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "guestPwd",
+                        "description": "guestPwd",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "domain",
+                        "description": "domain",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "domainPwd",
+                        "description": "domainPwd",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    }
+                ],
+                "responseMessages": [
+                    {
+                        "code": 201,
+                        "message": "Created"
+                    },
+                    {
+                        "code": 404,
+                        "message": "Not Found"
+                    },
+                    {
+                        "code": 403,
+                        "message": "Forbidden"
+                    },
+                    {
+                        "code": 401,
+                        "message": "Unauthorized"
+                    },
+                    {
+                        "code": 200,
+                        "message": "OK",
+                        "responseModel": "JsonResponse"
+                    }
+                ],
+                "deprecated": "false"
+            }
+        ]
+    },
+    {
+        "path": "/vdi/ad/dhcpscope",
+        "description": "installADDesktopDHCPScope",
+        "operations": [
+            {
+                "method": "POST",
+                "summary": "installADDesktopDHCPScope",
+                "notes": "installADDesktopDHCPScope",
+                "type": "PowerShellExecutionResult",
+                "nickname": "installADDesktopDHCPScope",
+                "parameters": [
+                    {
+                        "name": "version",
+                        "description": "version",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "path",
+                        "allowMultiple": false,
+                        "enum": ["1.5", "5.1"]
+                    },
+                    {
+                        "name": "vmName",
+                        "description": "vmName",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "guestUid",
+                        "description": "guestUid",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "guestPwd",
+                        "description": "guestPwd",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    }
+                ],
+                "responseMessages": [
+                    {
+                        "code": 201,
+                        "message": "Created"
+                    },
+                    {
+                        "code": 404,
+                        "message": "Not Found"
+                    },
+                    {
+                        "code": 403,
+                        "message": "Forbidden"
+                    },
+                    {
+                        "code": 401,
+                        "message": "Unauthorized"
+                    },
+                    {
+                        "code": 200,
+                        "message": "OK",
+                        "responseModel": "PowerShellExecutionResult"
+                    }
+                ],
+                "deprecated": "false"
+            }
+        ]
+    },
+    {
+        "path": "/vdi/ad",
+        "description": "customizeAD",
+        "operations": [
+            {
+                "method": "PUT",
+                "summary": "customizeAD",
+                "notes": "customizeAD",
+                "type": "PowerShellExecutionResult",
+                "nickname": "customizeAD",
+                "parameters": [
+                    {
+                        "name": "version",
+                        "description": "version",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "path",
+                        "allowMultiple": false,
+                        "enum": ["1.5", "5.1"]
+                    },
+                    {
+                        "name": "vmName",
+                        "description": "vmName",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "guestUid",
+                        "description": "guestUid",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "guestPwd",
+                        "description": "guestPwd",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "desktopOUName",
+                        "description": "desktopOUName",
+                        "defaultValue": "DesktopOU",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "vdiAdminOU",
+                        "description": "vdiAdminOU",
+                        "defaultValue": "VDIAdmin",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "vdiUsersGroup",
+                        "description": "vdiUsersGroup",
+                        "defaultValue": "VDIIsersGroup",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "vdiUsersOU",
+                        "description": "vdiUsersOU",
+                        "defaultValue": "VDIUsersOU",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "logDir",
+                        "description": "logDir",
+                        "defaultValue": "LogDir",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "log",
+                        "description": "log",
+                        "defaultValue": "Log",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "scriptPath",
+                        "description": "scriptPath",
+                        "defaultValue": "C:\\temp",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "servicePassword",
+                        "description": "servicePassword",
+                        "defaultValue": "Pa$$w0rd",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    }
+                ],
+                "responseMessages": [
+                    {
+                        "code": 201,
+                        "message": "Created"
+                    },
+                    {
+                        "code": 404,
+                        "message": "Not Found"
+                    },
+                    {
+                        "code": 403,
+                        "message": "Forbidden"
+                    },
+                    {
+                        "code": 401,
+                        "message": "Unauthorized"
+                    },
+                    {
+                        "code": 200,
+                        "message": "OK",
+                        "responseModel": "PowerShellExecutionResult"
+                    }
+                ],
+                "deprecated": "false"
+            }
+        ]
+    },
+    {
+        "path": "/ad/conditionalDnsForwarder",
+        "description": "listConditionalDnsForwarders",
+        "operations": [
+            {
+                "method": "GET",
+                "summary": "listConditionalDnsForwarders",
+                "notes": "listConditionalDnsForwarders",
+                "type": "PowerShellExecutionResult",
+                "nickname": "listConditionalDnsForwarders",
+                "produces": ["application/json;charset=utf-8"],
+                "parameters": [
+                    {
+                        "name": "version",
+                        "description": "version",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "path",
+                        "allowMultiple": false,
+                        "enum": ["1.5", "5.1"]
+                    },
+                    {
+                        "name": "vmName",
+                        "description": "vmName",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "guestUid",
+                        "description": "guestUid",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "guestPwd",
+                        "description": "guestPwd",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    }
+                ],
+                "responseMessages": [
+                    {
+                        "code": 404,
+                        "message": "Not Found"
+                    },
+                    {
+                        "code": 403,
+                        "message": "Forbidden"
+                    },
+                    {
+                        "code": 401,
+                        "message": "Unauthorized"
+                    },
+                    {
+                        "code": 200,
+                        "message": "OK",
+                        "responseModel": "PowerShellExecutionResult"
+                    }
+                ],
+                "deprecated": "false"
+            }
+        ]
+    },
+    {
+        "path": "/vdi/ad_cert_service",
+        "description": "installAdCertificateService",
+        "operations": [
+            {
+                "method": "POST",
+                "summary": "installAdCertificateService",
+                "notes": "installAdCertificateService",
+                "type": "PowerShellExecutionResult",
+                "nickname": "installAdCertificateService",
+                "parameters": [
+                    {
+                        "name": "version",
+                        "description": "version",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "path",
+                        "allowMultiple": false,
+                        "enum": ["1.5", "5.1"]
+                    },
+                    {
+                        "name": "vmName",
+                        "description": "vmName",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "guestUid",
+                        "description": "guestUid",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "guestPwd",
+                        "description": "guestPwd",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "caName",
+                        "description": "caName",
+                        "defaultValue": "",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "cadnSuffix",
+                        "description": "cadnSuffix",
+                        "defaultValue": "",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "caType",
+                        "description": "caType",
+                        "defaultValue": "Enterprise Root",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "parentCA",
+                        "description": "parentCA",
+                        "defaultValue": "",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "csp",
+                        "description": "csp",
+                        "defaultValue": "",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "keyLength",
+                        "description": "keyLength",
+                        "defaultValue": "",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "hashAlgorithm",
+                        "description": "hashAlgorithm",
+                        "defaultValue": "",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "validForYears",
+                        "description": "validForYears",
+                        "defaultValue": "",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "requestFileName",
+                        "description": "requestFileName",
+                        "defaultValue": "",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "caCertFile",
+                        "description": "caCertFile",
+                        "defaultValue": "",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "password",
+                        "description": "password",
+                        "defaultValue": "PFXKeySet",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "thumbprint",
+                        "description": "thumbprint",
+                        "defaultValue": "ExistingKeySet",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "dbDirectory",
+                        "description": "dbDirectory",
+                        "defaultValue": "",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "logDirectory",
+                        "description": "logDirectory",
+                        "defaultValue": "",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "overwriteExisting",
+                        "description": "overwriteExisting",
+                        "defaultValue": "true",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "allowCSPInteraction",
+                        "description": "allowCSPInteraction",
+                        "defaultValue": "",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "force",
+                        "description": "force",
+                        "defaultValue": "true",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "logDir",
+                        "description": "logDir",
+                        "defaultValue": "c:\\log",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    }
+                ],
+                "responseMessages": [
+                    {
+                        "code": 201,
+                        "message": "Created"
+                    },
+                    {
+                        "code": 404,
+                        "message": "Not Found"
+                    },
+                    {
+                        "code": 403,
+                        "message": "Forbidden"
+                    },
+                    {
+                        "code": 401,
+                        "message": "Unauthorized"
+                    },
+                    {
+                        "code": 200,
+                        "message": "OK",
+                        "responseModel": "PowerShellExecutionResult"
+                    }
+                ],
+                "deprecated": "false"
+            }
+        ]
+    },
+    {
+        "path": "/ad/conditionalDnsForwarder/{remoteDomainName}",
+        "description": "removeConditionalDnsForwarder",
+        "operations": [
+            {
+                "method": "DELETE",
+                "summary": "removeConditionalDnsForwarder",
+                "notes": "removeConditionalDnsForwarder",
+                "type": "PowerShellExecutionResult",
+                "nickname": "removeConditionalDnsForwarder",
+                "produces": ["application/json;charset=utf-8"],
+                "parameters": [
+                    {
+                        "name": "version",
+                        "description": "version",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "path",
+                        "allowMultiple": false,
+                        "enum": ["1.5", "5.1"]
+                    },
+                    {
+                        "name": "remoteDomainName",
+                        "description": "remoteDomainName",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "path",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "vmName",
+                        "description": "vmName",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "guestUid",
+                        "description": "guestUid",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "guestPwd",
+                        "description": "guestPwd",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "sync",
+                        "description": "sync",
+                        "defaultValue": "false",
+                        "required": false,
+                        "type": "boolean",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    }
+                ],
+                "responseMessages": [
+                    {
+                        "code": 204,
+                        "message": "Created"
+                    },
+                    {
+                        "code": 403,
+                        "message": "Forbidden"
+                    },
+                    {
+                        "code": 401,
+                        "message": "Unauthorized"
+                    },
+                    {
+                        "code": 200,
+                        "message": "OK",
+                        "responseModel": "PowerShellExecutionResult"
+                    }
+                ],
+                "deprecated": "false"
+            }
+        ]
+    },
+    {
+        "path": "/vdi/ad",
+        "description": "removeAD",
+        "operations": [
+            {
+                "method": "DELETE",
+                "summary": "removeAD",
+                "notes": "removeAD",
+                "type": "PowerShellExecutionResult",
+                "nickname": "removeAD",
+                "parameters": [
+                    {
+                        "name": "version",
+                        "description": "version",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "path",
+                        "allowMultiple": false,
+                        "enum": ["1.5", "5.1"]
+                    },
+                    {
+                        "name": "vmName",
+                        "description": "vmName",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "guestUid",
+                        "description": "guestUid",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "guestPwd",
+                        "description": "guestPwd",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "adminPwd",
+                        "description": "adminPwd",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    }
+                ],
+                "responseMessages": [
+                    {
+                        "code": 204,
+                        "message": "Created"
+                    },
+                    {
+                        "code": 403,
+                        "message": "Forbidden"
+                    },
+                    {
+                        "code": 401,
+                        "message": "Unauthorized"
+                    },
+                    {
+                        "code": 200,
+                        "message": "OK",
+                        "responseModel": "PowerShellExecutionResult"
+                    }
+                ],
+                "deprecated": "false"
+            }
+        ]
+    },
+    {
+        "path": "/ad/domain/passwordPolicy",
+        "description": "getPasswordPolicy",
+        "operations": [
+            {
+                "method": "GET",
+                "summary": "getPasswordPolicy",
+                "notes": "getPasswordPolicy",
+                "type": "PowerShellExecutionResult",
+                "nickname": "getPasswordPolicy",
+                "produces": ["application/json;charset=utf-8"],
+                "parameters": [
+                    {
+                        "name": "version",
+                        "description": "version",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "path",
+                        "allowMultiple": false,
+                        "enum": ["1.5", "5.1"]
+                    },
+                    {
+                        "name": "vmName",
+                        "description": "vmName",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "guestUid",
+                        "description": "guestUid",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "guestPwd",
+                        "description": "guestPwd",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    }
+                ],
+                "responseMessages": [
+                    {
+                        "code": 404,
+                        "message": "Not Found"
+                    },
+                    {
+                        "code": 403,
+                        "message": "Forbidden"
+                    },
+                    {
+                        "code": 401,
+                        "message": "Unauthorized"
+                    },
+                    {
+                        "code": 200,
+                        "message": "OK",
+                        "responseModel": "PowerShellExecutionResult"
+                    }
+                ],
+                "deprecated": "false"
+            }
+        ]
+    },
+    {
+        "path": "/vdi/ad/dhcpscope",
+        "description": "destroyADDesktopDHCPScope",
+        "operations": [
+            {
+                "method": "DELETE",
+                "summary": "destroyADDesktopDHCPScope",
+                "notes": "destroyADDesktopDHCPScope",
+                "type": "PowerShellExecutionResult",
+                "nickname": "destroyADDesktopDHCPScope",
+                "parameters": [
+                    {
+                        "name": "version",
+                        "description": "version",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "path",
+                        "allowMultiple": false,
+                        "enum": ["1.5", "5.1"]
+                    },
+                    {
+                        "name": "vmName",
+                        "description": "vmName",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "guestUid",
+                        "description": "guestUid",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "guestPwd",
+                        "description": "guestPwd",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    }
+                ],
+                "responseMessages": [
+                    {
+                        "code": 204,
+                        "message": "Created"
+                    },
+                    {
+                        "code": 403,
+                        "message": "Forbidden"
+                    },
+                    {
+                        "code": 401,
+                        "message": "Unauthorized"
+                    },
+                    {
+                        "code": 200,
+                        "message": "OK",
+                        "responseModel": "PowerShellExecutionResult"
+                    }
+                ],
+                "deprecated": "false"
+            }
+        ]
+    },
+    {
+        "path": "/vdi/ad",
+        "description": "installAD",
+        "operations": [
+            {
+                "method": "POST",
+                "summary": "installAD",
+                "notes": "installAD",
+                "type": "PowerShellExecutionResult",
+                "nickname": "installAD",
+                "parameters": [
+                    {
+                        "name": "version",
+                        "description": "version",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "path",
+                        "allowMultiple": false,
+                        "enum": ["1.5", "5.1"]
+                    },
+                    {
+                        "name": "vmName",
+                        "description": "vmName",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "guestUid",
+                        "description": "guestUid",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "guestPwd",
+                        "description": "guestPwd",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "domainName",
+                        "description": "domainName",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "siteName",
+                        "description": "siteName",
+                        "defaultValue": "",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "localAdminPassword",
+                        "description": "localAdminPassword",
+                        "defaultValue": "",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "safePassword",
+                        "description": "safePassword",
+                        "defaultValue": "Administrator",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "forestLevel",
+                        "description": "forestLevel",
+                        "defaultValue": "4",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "domainLevel",
+                        "description": "domainLevel",
+                        "defaultValue": "4",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "databasePath",
+                        "description": "databasePath",
+                        "defaultValue": "C:\\AD\\NTDS",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "logPath",
+                        "description": "logPath",
+                        "defaultValue": "C:\\AD\\NTDS",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "sysVolPath",
+                        "description": "sysVolPath",
+                        "defaultValue": "C:\\AD\\Sysvol",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "unattendedFile",
+                        "description": "unattendedFile",
+                        "defaultValue": "C:\\Unattend_AD2008R2.txt",
+                        "required": false,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    }
+                ],
+                "responseMessages": [
+                    {
+                        "code": 201,
+                        "message": "Created"
+                    },
+                    {
+                        "code": 404,
+                        "message": "Not Found"
+                    },
+                    {
+                        "code": 403,
+                        "message": "Forbidden"
+                    },
+                    {
+                        "code": 401,
+                        "message": "Unauthorized"
+                    },
+                    {
+                        "code": 200,
+                        "message": "OK",
+                        "responseModel": "PowerShellExecutionResult"
+                    }
+                ],
+                "deprecated": "false"
+            }
+        ]
+    },
+    {
+        "path": "/vdi/ad/dhcpscope",
+        "description": "createADDesktopDHCPScope",
+        "operations": [
+            {
+                "method": "PUT",
+                "summary": "createADDesktopDHCPScope",
+                "notes": "createADDesktopDHCPScope",
+                "type": "PowerShellExecutionResult",
+                "nickname": "createADDesktopDHCPScope",
+                "parameters": [
+                    {
+                        "name": "version",
+                        "description": "version",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "path",
+                        "allowMultiple": false,
+                        "enum": ["1.5", "5.1"]
+                    },
+                    {
+                        "name": "vmName",
+                        "description": "vmName",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "guestUid",
+                        "description": "guestUid",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "guestPwd",
+                        "description": "guestPwd",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "scope",
+                        "description": "scope",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "mask",
+                        "description": "mask",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "ipStart",
+                        "description": "ipStart",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "ipStop",
+                        "description": "ipStop",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "gateway",
+                        "description": "gateway",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "fqdn",
+                        "description": "fqdn",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "serverIp",
+                        "description": "serverIp",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "desktopOU",
+                        "description": "desktopOU",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "inAddrApraZone",
+                        "description": "inAddrApraZone",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    },
+                    {
+                        "name": "domainName",
+                        "description": "domainName",
+                        "defaultValue": "",
+                        "required": true,
+                        "type": "string",
+                        "paramType": "query",
+                        "allowMultiple": false
+                    }
+                ],
+                "responseMessages": [
+                    {
+                        "code": 201,
+                        "message": "Created"
+                    },
+                    {
+                        "code": 404,
+                        "message": "Not Found"
+                    },
+                    {
+                        "code": 403,
+                        "message": "Forbidden"
+                    },
+                    {
+                        "code": 401,
+                        "message": "Unauthorized"
+                    },
+                    {
+                        "code": 200,
+                        "message": "OK",
+                        "responseModel": "PowerShellExecutionResult"
+                    }
+                ],
+                "deprecated": "false"
+            }
+        ]
+    }
+], "models": {
+    "PowerShellExecutionResult": {
+        "id": "PowerShellExecutionResult",
+        "description": "",
+        "extends": "",
+        "properties": {
+            "apiCallStatus": {
+                "type": "string",
+                "enum": ["RAN_TEST_SCRIPT", "TEST_ASYNC_CONTROLLER_METHOD_SUCCESSFUL", "TEST_ASYNC_CONTROLLER_METHOD_FAILED", "TEST_ASYNC_METHOD_SUCCESSFUL", "TEST_ASYNC_METHOD_FAILED", "BACKEND_STATUS_RETRIEVED_SUCCESSFULLY", "UNABLE_TO_GET_VCLOUD_CLIENT", "UNABLE_TO_GET_ADMIN_VDC", "RUNTIME_EXCEPTION", "UNABLE_TO_LOGOUT_VCLOUD_CLIENT", "ILLEGAL_API_VERSION", "UNABLE_TO_GET_ORGANIZATION", "THREAD_INTERRUPTED", "BAD_VCENTER_CONFIG", "MANAGED_ENTITY_NOT_FOUND", "VMWARE_TOOLS_NOT_RUNNING", "DATACENTER_NOT_FOUND", "EDGE_NOT_FOUND", "VALIDATION_FAILED", "VCLOUD_EXCEPTION", "VCLOUD_TASK_TIMED_OUT", "NULL_API_CALL_STATUS", "ORGANIZATION_RETRIEVED", "ORGANIZATION_RETRIEVE_FAILED", "NO_ORGANIZATION_WITH_GIVEN_NAME", "ORGANIZATION_CREATED", "ORGANIZATION_CREATION_FAILED", "ORGANIZATION_UPDATED", "ORGANIZATION_UPDATE_FAILED", "ORGANIZATION_DELETED", "ORGANIZATION_DELETE_FAILED", "UNABLE_TO_GET_ADMIN_ORGANIZATION", "UNABLE_TO_GET_VMS", "UNABLE_TO_UNDEPLOY_VM", "UNABLE_TO_DELETE_VM", "UNABLE_TO_POWER_OFF_VAPP", "UNABLE_TO_UNDEPLOY_VAPP", "UNABLE_TO_DELETE_VAPP", "UNABLE_TO_GET_VAPP_TEMPLATE", "UNABLE_TO_DELETE_VAPP_TEMPLATE", "UNABLE_TO_DELETE_NETWORKS", "UNABLE_TO_DELETE_EDGE_GATEWAYS", "UNABLE_TO_DISABLE_ADMIN_VDC", "UNABLE_TO_DELETE_ADMIN_VDC", "UNABLE_TO_DISABLE_ADMIN_ORG", "UNABLE_TO_DELETE_ADMIN_ORG", "VCLOUD_RUNTIME_EXCEPTION", "VDC_RETRIEVED", "VDC_RETRIEVE_FAILED", "VDC_CREATED", "VDC_CREATION_FAILED", "VDC_UPDATED", "VDC_UPDATE_FAILED", "VDC_DELETED", "VDC_DELETION_FAILED", "NETWORK_CREATED", "UNABLE_TO_CREATE_EDGE_GATEWAY", "UNABLE_TO_CREATE_ORGANIZATION_NETWORK", "UNABLE_TO_ADD_FIREWALL_RULES", "UNABLE_TO_ADD_NAT_RULE", "NETWORK_CREATION_SCHEDULED_SUCCESSFULLY", "NETWORKS_RETRIEVED_SUCCESSFULLY", "UNABLE_TO_GET_NETWORK_REFERENCES", "UNABLE_TO_GET_NETWORK_BY_REFERENCE", "UNABLE_TO_GET_ROUTED_NETWORK_PROPERTIES", "TEMPLATE_DOWNLOADED", "TEMPLATE_DOWNLOAD_FAILED", "TASK_CANCELED_BY_USER", "MALFORMED_URL", "OVF_DESCRIPTOR_COULD_NOT_BE_PARSED", "ZIP_ARCHIVE_COULD_NOT_BE_DECOMPRESSED", "DOWNLOADED_FILES_NOT_VALID", "UNABLE_TO_CREATE_TARGET_DIRECTORY", "VSHIELD_EGDE_CREATED", "MANAGED_OBJECT_QUERY_FAILED", "NO_OVF_DESCRIPTOR_IN_OVA_PACKAGE", "UNABLE_TO_CREATE_VSHIELD_MANAGER_VM", "UNABLE_TO_POWER_ON_VSHIELD_MANAGER_VM", "CONSOLE_GET", "CONSOLE_GET_FAILED", "PROVIDER_VDC_RETRIEVED", "PROVIDER_VDC_RETRIEVE_FAILED", "VPN_CREATED", "UNABLE_TO_CREATE_VPN", "VPN_DELETED", "UNABLE_TO_DELETE_VPN", "VAPP_RETRIEVED", "VAPP_RETRIEVE_FAILED", "VAPP_UPDATED", "VAPP_UPDATE_FAILED", "VAPP_DELETED", "VAPP_DELETE_FAILED", "VAPP_CREATE_SCHEDULED_SUCCESSFULLY", "VAPP_CREATION_FAILED", "VAPP_UNABLE_TO_GET_NETWORKS", "VAPP_UNABLE_TO_GET_TASK", "VAPP_IMPORTED_OVF", "VAPP_UNABLE_TO_IMPORT_OVF", "VAPP_RECOMPOSED", "VAPP_UNABLE_TO_RECOMPOSE", "FIREWALL_RULES_REFRESHED", "UNABLE_TO_REFRESH_FIREWALL_RULES_CREATE_IP_SETS_FAILED", "UNABLE_TO_REFRESH_FIREWALL_RULES_CREATE_SERVICES_FAILED", "UNABLE_TO_REFRESH_FIREWALL_RULES_CREATE_FIREWALL_RULE_FAILED", "UNABLE_TO_REFRESH_FIREWALL_RULES_CLEAN_FIREWALL_RULES_FAILED", "UNABLE_TO_REFRESH_FIREWALL_RULES", "UNABLE_TO_GET_VSHIELD_EDGE_STATS", "UNABLE_TO_GET_VSHIELD_EDGE_STATS_ILLEGAL_AGGREGATION_METHOD", "UNABLE_TO_GET_VSHIELD_EDGE_STATS_UNPARSEABLE_VSHIELD_RESPONSE", "TEMPLATE_RETRIEVED", "TEMPLATE_RETRIEVE_FAILED", "TEMPLATE_IMPORTED", "TEMPLATE_IMPORT_FAILED", "TEMPLATE_DELETED", "TEMPLATE_DELETE_FAILED", "NAT_RULES_REFRESHED", "UNABLE_TO_ADD_INTERFACE_SECONDARY_IP", "UNABLE_TO_CLEAN_USER_NAT_RULES", "UNABLE_TO_REFRESH_NAT_RULES", "UNABLE_TO_FIND_VNIC0", "MASTER_IMAGES_RETRIEVED", "DESKTOP_RAN_STOP_SCRIPT", "DESKTOP_RAN_SHUTDOWN_SCRIPT", "DESKTOP_RAN_START_SCRIPT", "DESKTOP_RAN_RESTART_SCRIPT", "DESKTOP_RAN_SESSION_DISCONNECT_SCRIPT", "DESKTOP_RAN_USER_LOGOUT_SCRIPT", "DESKTOP_RAN_TAKE_SNAPSHOT_SCRIPT", "DESKTOP_RAN_REMOVE_SNAPSHOT_SCRIPT", "DESKTOP_RAN_LIST_SNAPSHOTS_SCRIPT", "DESKTOP_RAN_DESKTOP_RECOMPOSE", "DESKTOP_RAN_GET_DESKTOPS_STATUS", "DESKTOP_RAN_IMPORT_MASTER_IMAGE_SCRIPT", "DESKTOP_RAN_REMOVE_MASTER_IMAGE_SCRIPT", "DESKTOP_RAN_IMPORT_MASTER_IMAGE_OVF_SCRIPT", "PARENT_VM_CREATED_FROM_MASTER_IMAGE", "SNAPSHOT_CREATED_FROM_PARENT_VM", "DESKTOP_RAN_IMPORT_OVF_SCRIPT", "FOLDERS_LISTED_SUCCESSFULLY", "DESKTOP_RAN_CREATE_FOLDER_SCRIPT", "DESKTOP_RAN_REMOVE_FOLDER_SCRIPT", "CUSTOMIZATION_SPECIFICATIONS_RETRIEVED", "DESKTOP_RAN_DESKTOP_REFRESH", "DESKTOP_RAN_ADD_DESKTOP_OWNERSHIP_SCRIPT", "DESKTOP_RAN_REMOVE_DESKTOP_OWNERSHIP_SCRIPT", "DESKTOP_RAN_UPDATE_DESKTOP_STATE_SCRIPT", "DESKTOP_POOL_ENTITLEMENTS_RETRIEVED", "DESKTOP_RAN_ADD_DESKTOP_POOL_ENTITLEMENT", "DESKTOP_RAN_REMOVE_DESKTOP_POOL_ENTITLEMENT", "DESKTOP_RAN_DESKTOP_RESET", "POWERSHELL_SCRIPT_UPLOADED", "POWERSHELL_EXECUTION_FAILED", "POWERSHELL_UNABLE_TO_UPLOAD_SCRIPT", "POWERSHELL_UNABLE_TO_KILL", "POWERSHELL_GET_STATUS_FAILED", "POWERSHELL_COMMAND_EXECUTION_FAILED", "POWERSHELL_VIEW_CONNECTION_STATUS_BROKER_FAILED", "POWERSHELL_CHECK_RESPONSE_FAILED", "POWERSHELL_UNABLE_TO_CHECK_STATUS", "POWERSHELL_UNABLE_TO_CHECK_STATUS_NOT_RECOGNIZED_STATE", "POWERSHELL_UNABLE_TO_GET_OUTPUT", "POWERSHELL_PROCESS_FAILED", "POWERSHELL_LOG_CONTAINS_EXCEPTIONS", "POWERSHELL_EXECUTION_OK", "LIST_STORAGE_POOL", "LIST_STORAGE_POOL_FAILED", "CREATED_STORAGE_POOL", "CREATE_STORAGE_POOL_FAILED", "DELETED_STORAGE_POOL", "DELETE_STORAGE_POOL_FAILED", "EXPANDED_STORAGE_POOL", "EXPAND_STORAGE_POOL_FAILED", "PROVISIONED_LUN", "PROVISION_LUN_FAILED", "DELETED_LUN", "DELETE_LUN_FAILED", "EXPANDED_LUN", "EXPAND_LUN_FAILED", "DATACENTERS_RETRIEVED", "CLUSTERS_RETRIEVED", "RESOURCE_POOLS_RETRIEVED", "DATA_STORES_RETRIEVED", "STATS_RETRIEVED", "PORT_GROUPS_RETRIEVED", "SWITCHES_RETRIEVED", "VM_RETRIEVE_FAILED", "NO_VDC_WITH_GIVEN_NAME", "NO_VAPP_WITH_GIVEN_NAME", "DESKTOP_POOLS_RETRIEVED", "DESKTOP_POOL_STATUS_RETRIEVED", "VDI_STATS_RETRIEVED", "POOL_FOLDERS_RETRIEVED", "VCO_API_VERSIONS_RETRIEVED", "UNABLE_TO_CREATE_VCO_SESSION", "WORKFLOW_RETRIEVED", "NO_WORKFLOW_WITH_GIVEN_NAME", "WORKFLOW_EXECUTED_SUCCESSFULLY", "INVALID_WORKFLOW_PARAMETER", "WORKFLOW_EXECUTION_FAILED", "WORKFLOW_EXECUTION_CANCELED", "WORKFLOW_EXECUTION_SCHEDULED_SUCCESSFULLY", "WORKFLOWS_RETRIEVED", "UNABLE_TO_RETRIEVE_WORKFLOWS", "WORKFLOWS_RETRIEVAL_SCHEDULED_SUCCESSFULLY", "HA_ENABLED", "HA_ENABLE_FAILED", "HA_ENABLE_CLUSTER_NOT_FOUND", "VI_RESOURCE_POOL_CREATED", "VI_RESOURCE_POOL_CREATION_FAILED", "VI_VM_TO_TEMPLATE_CONVERTED", "VI_VM_TO_TEMPLATE_CONVERSION_FAILED", "VI_FOLDER_CREATED", "VI_FOLDER_CREATION_FAILED", "UNABLE_TO_ADD_NIC_TO_VM", "UNABLE_TO_GET_DISTRIBUTED_VIRTUAL_SWITCHES", "VI_CLONE_VM_FAILED", "VI_UNABLE_TO_GET_MANAGED_ENTITY_PATH", "VI_RESOURCE_POOL_RETRIEVED", "UNABLE_TO_GET_RESOURCE_POOL", "TASK_COMPLETED", "TASK_NO_INFO_FOUND", "TASK_STATUS_CHECK_FAILED", "TASK_STATUS_NULL", "GENERATE_SNAPSHOT_INDEX_COMPLETED", "GENERATE_SNAPSHOT_INDEX_ERROR", "EC_SNAPSHOT_COMPLETED", "EC_SNAPSHOT_FAILED", "UPLOAD_INDEX_TO_REDIS_COMPLETED", "UPLOAD_INDEX_TO_REDIS_ERROR", "SNAPSHOT_THREAD_COMPLETED", "SNAPSHOT_THREAD_FAILED", "VSPHERE_OVF_UPLOADED_SUCCESSFULLY", "VSPHERE_OVF_UPLOAD_FAILED", "SNAPSHOT_ZIPPER_ENDED_SUCCESSFULLY", "SNAPSHOT_ZIPPER_FAILED", "OVF_IMPORTED_SUCCESSFULLY", "OVF_IMPORT_FAILED", "AD_RAN_LIST_GROUPS_SCRIPT", "AD_RAN_CREATE_GROUP_SCRIPT", "AD_RAN_DELETE_GROUP_SCRIPT", "AD_RAN_UPDATE_GROUP_SCRIPT", "AD_RAN_ADD_GROUP_MEMBER_SCRIPT", "AD_RAN_REMOVE_GROUP_MEMBER_SCRIPT", "AD_RAN_CREATE_TRUST_SCRIPT", "AD_TRUST_CREATED", "AD_RAN_DELETE_TRUST_SCRIPT", "AD_TRUST_DELETED", "AD_RAN_LIST_TRUSTS_SCRIPT", "AD_RAN_CREATE_ORGANIZATION_UNIT_SCRIPT", "AD_RAN_DELETE_ORGANIZATION_UNIT_SCRIPT", "AD_RAN_LIST_ORGANIZATION_UNITS_SCRIPT", "AD_RAN_CREATE_ORGANIZATION_UNIT_ACL_SCRIPT", "AD_RAN_DELETE_ORGANIZATION_UNIT_ACL_SCRIPT", "AD_RAN_LIST_ORGANIZATION_UNITS_ACL_SCRIPT", "AD_RAN_CREATE_CONDITIONAL_DNS_FORWARDER_SCRIPT", "AD_CONDITIONAL_DNS_FORWARDER_CREATED", "AD_RAN_DELETE_CONDITIONAL_DNS_FORWARDER_SCRIPT", "AD_CONDITIONAL_DNS_FORWARDER_DELETED", "AD_RAN_LIST_CONDITIONAL_DNS_FORWARDER_SCRIPT", "AD_RAN_CREATE_USER_SCRIPT", "AD_RAN_UPDATE_USER_SCRIPT", "AD_USER_CREATED", "AD_USER_UPDATED", "AD_RETRIEVED_PASSWORD_POLICY", "AD_RAN_CREATE_ORGANIZATION_UNIT_GPO_SCRIPT", "AD_RAN_DELETE_ORGANIZATION_UNIT_GPO_SCRIPT", "AD_RAN_INSTALL_KMS_SCRIPT", "AD_RAN_UNINSTALL_KMS_SCRIPT", "AD_KMS_INSTALLED", "AD_KMS_UNINSTALLED", "AD_KMS_RETRIEVED_SUCCESSFULLY", "AD_KMS_PRODUCT_LICENSES_RETRIEVED_SUCCESSFULLY", "AD_RAN_ADD_KMS_PRODUCT_LICENSE_SCRIPT", "AD_RAN_REMOVE_KMS_PRODUCT_LICENSE_SCRIPT", "AD_RAN_GET_GPO_SCRIPT", "AD_RAN_UPDATE_GPO_SCRIPT", "AD_KMS_STATS_RETRIEVED_SUCCESSFULLY", "AD_GPOS_LISTED_SUCCESSFULLY", "NONEXISTENT_REDIS_KEY", "VM_START_RAN_TASK", "VM_START_NOT_POWERED_OFF", "VM_STOP_RAN_TASK", "VM_STOP_NOT_DEPLOYED", "VM_STOP_NOT_POWERED_ON", "DISTRIBUTED_VIRTUAL_SWITCHES_RETRIEVED", "MANAGED_ENTITY_PATH_RETRIEVED", "FOLDER_CREATED", "EDGE_RETRIEVED_SUCCESSFULLY", "VSHIELD_EDGE_ID_RETRIEVED_SUCCESSFULLY", "UNABLE_TO_RETRIEVE_EDGE", "EDGE_UPLINK_INTERFACE_ADDED_SUCCESSFULLY", "UNABLE_TO_ADD_EDGE_UPLINK_INTERFACE", "SUBNET_PARTICIPATION_ADDED_SUCCESSFULLY", "UNABLE_TO_ADD_SUBNET_PARTICIPATION", "DSM_INSTALL_SCRIPT_RUN", "DSM_UNINSTALL_SCRIPT_RUN", "VXVLAN_CREATED", "VXVLAN_REMOVE_SCRIPT_RUN", "VXVLAN_RETRIEVED", "VXVLAN_CONFIGURATION_SCRIPT_RUN", "VAPP_START_RAN_TASK", "VAPP_START_NOT_POWERED_OFF", "VAPP_STOP_RAN_TASK", "VAPP_STOP_NOT_DEPLOYED", "VAPP_STOP_NOT_POWERED_ON", "HOT_FIX_APPLICATION_SCHEDULED_SUCCESSFULLY", "HOT_FIX_APPLIED_SUCCESSFULLY", "HOT_FIX_APPLICATION_FAILED", "UNABLE_TO_UPLOAD_HOT_FIX_TO_GUEST", "UNABLE_TO_APPLY_HOT_FIX", "SSL_VPN_ENABLED", "SSL_VPN_ENABLING_FAILED", "SSL_VPN_DISABLED", "SSL_VPN_DISABLING_FAILED", "SSL_VPN_CONFIGURED", "SSL_VPN_CONFIGURATION_FAILED", "SSL_VPN_AUTH_CONFIGURED", "SSL_VPN_AUTH_CONFIGURATION_FAILED", "SSL_VPN_USER_CREATED", "SSL_VPN_USER_CREATION_FAILED", "SSL_VPN_USER_UPDATED", "SSL_VPN_USER_UPDATE_FAILED", "SSL_VPN_USER_DELETED", "SSL_VPN_USER_DELETION_FAILED", "SSL_VPN_USER_RETRIEVED", "SSL_VPN_USER_RETRIEVAL_FAILED", "SSL_VPN_USERS_RETRIEVED", "SSL_VPN_USERS_RETRIEVAL_FAILED", "SSL_VPN_IP_POOL_CREATED", "SSL_VPN_IP_POOL_CREATION_FAILED", "SSL_VPN_IP_POOL_UPDATED", "SSL_VPN_IP_POOL_UPDATE_FAILED", "SSL_VPN_IP_POOL_DELETED", "SSL_VPN_IP_POOL_DELETION_FAILED", "SSL_VPN_IP_POOL_RETRIEVED", "SSL_VPN_IP_POOL_RETRIEVAL_FAILED", "SSL_VPN_IP_POOLS_RETRIEVED", "SSL_VPN_IP_POOLS_RETRIEVAL_FAILED"]
+            }
+        }
+    },
+    "JsonResponse": {
+        "id": "JsonResponse",
+        "description": "",
+        "extends": "",
+        "properties": {}
+    },
+    "Optional«string»": {
+        "id": "Optional«string»",
+        "description": "",
+        "extends": "",
+        "properties": {
+            "present": {
+                "type": "boolean"
+            }
+        }
+    },
+    "ConditionalDnsForwarderDto": {
+        "id": "ConditionalDnsForwarderDto",
+        "description": "",
+        "extends": "",
+        "properties": {
+            "remoteDomainName": {
+                "type": "string"
+            },
+            "remoteDnsServerIp": {
+                "type": "string"
+            },
+            "remoteDnsServer": {
+                "type": "string"
+            },
+            "timeout": {
+                "$ref": "Optional«string»"
+            }
+        }
+    }
+}}
