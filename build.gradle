@@ -1,8 +1,19 @@
+import com.github.jengelman.gradle.plugins.shadow.transformers.ManifestResourceTransformer
+
 apply plugin: 'groovy'
-apply plugin: 'maven'
+apply plugin: 'shadow'
 
 group = 'com._8x8.cloud.swagger2raml'
 version = '1.0'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:0.8'
+    }
+}
 
 repositories {
     mavenCentral()
@@ -12,6 +23,19 @@ repositories {
 
 dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.3.1'
+    compile 'commons-cli:commons-cli:1.2'
     testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
     testCompile 'org.raml:raml-parser:0.8.4'
+}
+
+shadow {
+    outputFile new File('dist/swagger2raml.jar')
+
+    exclude 'META-INF/*.SF'
+    exclude 'META-INF/*.DSA'
+    exclude 'META-INF/*.RSA'
+
+    transformer(ManifestResourceTransformer) {
+        attributes "Main-Class": 'com._8x8.cloud.swagger2raml.RamlGenerator'
+    }
 }
