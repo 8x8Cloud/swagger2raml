@@ -1,29 +1,28 @@
 package com._8x8.cloud.swagger2raml.reader
 
-import com._8x8.cloud.swagger2raml.model.Api
 import com._8x8.cloud.swagger2raml.model.Method
 import com._8x8.cloud.swagger2raml.model.QueryParameter
 import com._8x8.cloud.swagger2raml.model.Resource
-import groovy.json.JsonSlurper
 import groovy.transform.ToString
 
 /**
  * @author Jacek Kunicki
  */
-class SwaggerJsonReader {
+class SwaggerResourceReader extends SwaggerReader<Resource> {
 
-    Api readApi(File source) {
-        def json = new JsonSlurper().parse(source)
-
-        return new Api(
-                title: json.info.title,
-                version: json.apiVersion,
-                resources: json.apis.collect { new Resource(path: it.path.split('/').last()) }
-        )
+    @Override
+    Resource readFromUrl(String url) {
+        def json = jsonSlurper.parse(new URL(url))
+        return readFromJson(json)
     }
 
-    Resource readResource(File source) {
-        def json = new JsonSlurper().parse(source)
+    @Override
+    Resource readFromFile(File source) {
+        def json = jsonSlurper.parse(source)
+        return readFromJson(json)
+    }
+
+    private static Resource readFromJson(json) {
         def rootPath = json.apis.first().path.split('/').first()
         Resource root = new Resource(path: rootPath)
         json.apis.each { swaggerResource ->

@@ -1,6 +1,5 @@
 package com._8x8.cloud.swagger2raml.reader
 
-import com._8x8.cloud.swagger2raml.model.Api
 import com._8x8.cloud.swagger2raml.model.Delete
 import com._8x8.cloud.swagger2raml.model.Get
 import com._8x8.cloud.swagger2raml.model.Method
@@ -12,21 +11,10 @@ import spock.lang.Specification
 /**
  * @author Jacek Kunicki
  */
-class SwaggerJsonReaderSpec extends Specification {
+class SwaggerResourceReaderSpec extends Specification {
 
     def setupSpec() {
         Resource.metaClass.mixin ResourceAssertions
-    }
-
-    def 'should read resources'() {
-        setup:
-        File swaggerApiFile = new File('src/test/resources/swagger-api.json')
-
-        when:
-        Api api = new SwaggerJsonReader().readApi(swaggerApiFile)
-
-        then:
-        api.resources
     }
 
     def 'should read single resource'() {
@@ -34,7 +22,7 @@ class SwaggerJsonReaderSpec extends Specification {
         File resourceFile = new File('src/test/resources/swagger-resource.json')
 
         when:
-        Resource rootResource = new SwaggerJsonReader().readResource(resourceFile)
+        Resource rootResource = new SwaggerResourceReader().readFromFile(resourceFile)
 
         then:
         with(rootResource) {
@@ -60,7 +48,7 @@ class SwaggerJsonReaderSpec extends Specification {
         Collection<Path> paths = ['/a/b/c', '/a/d', '/a/b/e', '/f/g', '/f/h'].collect { new Path(it) }
 
         when:
-        paths.each { SwaggerJsonReader.addResource(rootResource, it, new Resource()) }
+        paths.each { SwaggerResourceReader.addResource(rootResource, it, new Resource()) }
 
         then:
         with(rootResource) {
