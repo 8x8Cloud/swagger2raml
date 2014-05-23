@@ -24,4 +24,13 @@ class Resource {
             return child
         }
     }
+
+    Resource mergeWith(Resource another) {
+        if (another.path == this.path) {
+            this.children.addAll(another.children)
+            this.methods.addAll(another.methods)
+        }
+
+        return this
+    }
 }
