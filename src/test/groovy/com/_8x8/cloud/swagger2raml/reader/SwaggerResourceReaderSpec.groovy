@@ -3,6 +3,7 @@ package com._8x8.cloud.swagger2raml.reader
 import com._8x8.cloud.swagger2raml.model.Delete
 import com._8x8.cloud.swagger2raml.model.Get
 import com._8x8.cloud.swagger2raml.model.Method
+import com._8x8.cloud.swagger2raml.model.Path
 import com._8x8.cloud.swagger2raml.model.Post
 import com._8x8.cloud.swagger2raml.model.Put
 import com._8x8.cloud.swagger2raml.model.Resource

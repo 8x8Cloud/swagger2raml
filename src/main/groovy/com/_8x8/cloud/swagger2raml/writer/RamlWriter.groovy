@@ -1,5 +1,6 @@
 package com._8x8.cloud.swagger2raml.writer
 
+import com._8x8.cloud.swagger2raml.model.Path
 import groovy.transform.TypeChecked
 import com._8x8.cloud.swagger2raml.model.Method
 import com._8x8.cloud.swagger2raml.model.QueryParameter
@@ -12,7 +13,6 @@ import com._8x8.cloud.swagger2raml.model.Resource
 class RamlWriter {
 
     private static final String LINE_SEPARATOR = System.getProperty('line.separator')
-    private static final String RESOURCE_PATH_SEPARATOR = '/'
     private static final String RAML_HEADER = '#%RAML 0.8'
     private static final int TAB_WIDTH = 2
 
@@ -31,7 +31,7 @@ class RamlWriter {
 
     void writeResources(Collection<Resource> resources) {
         resources.each { resource ->
-            write("${RESOURCE_PATH_SEPARATOR}${resource.path}:")
+            write("${Path.SEPARATOR}${resource.path}:")
             indented {
                 resource.methods.each { writeMethod(it) }
                 writeResources(resource.children)

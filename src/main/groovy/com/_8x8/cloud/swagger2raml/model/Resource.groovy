@@ -1,6 +1,5 @@
 package com._8x8.cloud.swagger2raml.model
 
-import com._8x8.cloud.swagger2raml.reader.Path
 import groovy.transform.ToString
 
 /**
