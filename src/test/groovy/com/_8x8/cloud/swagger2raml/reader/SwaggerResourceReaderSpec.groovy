@@ -23,7 +23,7 @@ class SwaggerResourceReaderSpec extends ResourceSpecBase {
         then:
         with(rootResource) {
             children.size() == 2
-            childByPath('/ad').hasPath('ad').hasChildren(3)
+            childByPath('/ad').hasPath('ad').hasChildren(4)
             childByPath('/ad/conditionalDnsForwarder').hasPath('conditionalDnsForwarder').hasChildren(1).hasMethods(Get, Post)
             childByPath('/ad/conditionalDnsForwarder/{remoteDomainName}').hasPath('{remoteDomainName}').hasNoChildren()
             childByPath('/ad/domain').hasPath('domain').hasChildren(2)
@@ -35,6 +35,12 @@ class SwaggerResourceReaderSpec extends ResourceSpecBase {
             childByPath('/vdi/ad').hasPath('ad').hasChildren(1).hasMethods(Post, Put, Delete)
             childByPath('/vdi/ad/dhcpscope').hasPath('dhcpscope').hasNoChildren().hasMethods(Post, Put, Delete)
             childByPath('/vdi/ad_cert_service').hasPath('ad_cert_service').hasNoChildren().hasMethods(Post)
+        }
+
+        and:
+        with (rootResource.childByPath('/ad/group/{groupName}/member').methods.first().queryParameters.find { it.name == 'memberNames' }) {
+            type == 'string'
+            repeat
         }
     }
 

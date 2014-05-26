@@ -43,13 +43,22 @@ class SwaggerResourceReader extends SwaggerReader<Resource> {
 
     private static Collection<QueryParameter> extractQueryParameters(Object operation) {
         return operation.parameters.findAll { it.paramType == 'query' }.collect { parameter ->
-            return new QueryParameter(
+            QueryParameter queryParameter = new QueryParameter(
                     name: parameter.name,
                     displayName: parameter.name,
                     description: parameter.description,
                     type: parameter.type,
                     required: parameter.required
             )
+
+            if (parameter.type == 'array') {
+                queryParameter.with {
+                    type = 'string'
+                    repeat = true
+                }
+            }
+
+            return queryParameter
         }
     }
 

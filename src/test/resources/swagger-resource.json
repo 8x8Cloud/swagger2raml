@@ -1484,6 +1484,92 @@
                 "deprecated": "false"
             }
         ]
+    },
+    {
+        "path": "/ad/group/{groupName}/member",
+        "description": "removeGroupMember",
+        "operations": [
+            {
+                "deprecated": "false",
+                "method": "DELETE",
+                "nickname": "removeGroupMember",
+                "notes": "removeGroupMember",
+                "parameters": [
+                    {
+                        "allowMultiple": false,
+                        "defaultValue": "",
+                        "description": "groupName",
+                        "name": "groupName",
+                        "paramType": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "allowMultiple": false,
+                        "defaultValue": "",
+                        "description": "vmName",
+                        "name": "vmName",
+                        "paramType": "query",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "allowMultiple": false,
+                        "defaultValue": "",
+                        "description": "guestUid",
+                        "name": "guestUid",
+                        "paramType": "query",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "allowMultiple": false,
+                        "defaultValue": "",
+                        "description": "guestPwd",
+                        "name": "guestPwd",
+                        "paramType": "query",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "allowMultiple": true,
+                        "defaultValue": "",
+                        "description": "memberNames",
+                        "items": {
+                            "type": "string"
+                        },
+                        "name": "memberNames",
+                        "paramType": "query",
+                        "required": true,
+                        "type": "array"
+                    }
+                ],
+                "produces": [
+                    "application/json;charset=utf-8"
+                ],
+                "responseMessages": [
+                    {
+                        "code": 204,
+                        "message": "Created"
+                    },
+                    {
+                        "code": 403,
+                        "message": "Forbidden"
+                    },
+                    {
+                        "code": 401,
+                        "message": "Unauthorized"
+                    },
+                    {
+                        "code": 200,
+                        "message": "OK",
+                        "responseModel": "PowerShellExecutionResult"
+                    }
+                ],
+                "summary": "removeGroupMember",
+                "type": "PowerShellExecutionResult"
+            }
+        ]
     }
 ], "models": {
     "PowerShellExecutionResult": {

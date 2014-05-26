@@ -10,4 +10,5 @@ class QueryParameter {
 
     String name, displayName, type, description, example
     boolean required
+    Boolean repeat
 }

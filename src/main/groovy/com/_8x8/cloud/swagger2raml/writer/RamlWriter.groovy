@@ -25,10 +25,6 @@ class RamlWriter {
         write('---')
     }
 
-    void writeProperties(object, Collection<String> propertyNames) {
-        propertyNames.each { writeProperty(object, it) }
-    }
-
     void writeResources(Collection<Resource> resources) {
         resources.each { resource ->
             write("${Path.SEPARATOR}${resource.path}:")
@@ -59,8 +55,12 @@ class RamlWriter {
     private void writeQueryParameter(QueryParameter queryParameter) {
         write("${queryParameter.name}:")
         indented {
-            writeProperties(queryParameter, ['displayName', 'type', 'description', 'example', 'required'])
+            writeProperties(queryParameter, ['displayName', 'type', 'description', 'example', 'required', 'repeat'])
         }
+    }
+
+    void writeProperties(object, Collection<String> propertyNames) {
+        propertyNames.each { writeProperty(object, it) }
     }
 
     private void writeProperty(object, String propertyName) {
