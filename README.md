@@ -19,18 +19,6 @@ RamlGenerator.generateFromSwaggerUrl(String url, String outputFileName)
 ```
 method with the parameters as described in the command line usage.
 
-## Issue guidelines
-
-This repository's [CONTRIBUTING.md](CONTRIBUTING.md) provides a generic set of
-guidelines for developers to adapt and include in their own GitHub
-repositories, thereby taking advantage of [GitHub's integration with
-contributing guidelines](https://github.com/blog/1184-contributing-guidelines).
-
-The section below can be included in your README to improve the visibility of
-your contribution guidelines.
-
-If you think this guide can be improved, please let me know.
-
 
 ### Contributing to this project
 
