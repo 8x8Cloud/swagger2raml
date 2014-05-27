@@ -1,12 +1,14 @@
 package com._8x8.cloud.swagger2raml.writer
 
 import com._8x8.cloud.swagger2raml.model.Api
+import com._8x8.cloud.swagger2raml.model.Body
 import com._8x8.cloud.swagger2raml.model.Delete
 import com._8x8.cloud.swagger2raml.model.Get
 import com._8x8.cloud.swagger2raml.model.Post
 import com._8x8.cloud.swagger2raml.model.Put
 import com._8x8.cloud.swagger2raml.model.QueryParameter
 import com._8x8.cloud.swagger2raml.model.Resource
+import groovy.json.JsonBuilder
 import org.raml.parser.visitor.RamlValidationService
 import spock.lang.Shared
 import spock.lang.Specification
@@ -34,6 +36,25 @@ class ApiWriterSpec extends Specification {
 
     def 'should write API to RAML file'() {
         setup:
+        def bodySchema = [
+                type      : 'object',
+                properties: [
+                        foo: [
+                                type    : 'string',
+                                required: true
+                        ],
+                        bar: [
+                                type    : 'string',
+                                required: false
+                        ]
+                ]
+        ]
+
+        def bodyExample = [
+                foo: 'xxx',
+                bar: 'yyy'
+        ]
+
         def resources = [
                 new Resource(
                         path: 'foo',
@@ -41,7 +62,12 @@ class ApiWriterSpec extends Specification {
                                 new Resource(
                                         path: 'foo1',
                                         methods: [
-                                                new Post(),
+                                                new Post(
+                                                        body: new Body(
+                                                                schema: new JsonBuilder(bodySchema).toPrettyString(),
+                                                                example: new JsonBuilder(bodyExample).toPrettyString()
+                                                        )
+                                                ),
                                                 new Delete(description: 'delete foo1')
                                         ]
                                 ),

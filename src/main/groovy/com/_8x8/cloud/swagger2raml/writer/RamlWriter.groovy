@@ -49,6 +49,23 @@ class RamlWriter {
                     method.queryParameters.each { writeQueryParameter(it) }
                 }
             }
+
+            if (method.body) {
+                write('body:')
+                indented {
+                    write("${method.body.contentType}:")
+                    indented {
+                        write('schema: |')
+                        indented {
+                            write(method.body.schema)
+                        }
+                        write('example: |')
+                        indented {
+                            write(method.body.example)
+                        }
+                    }
+                }
+            }
         }
     }
 
@@ -71,7 +88,9 @@ class RamlWriter {
     }
 
     private void write(String s) {
-        file << ' ' * indentation << s << LINE_SEPARATOR
+        s.split('[\r\n]+').each { String line ->
+            file << ' ' * indentation << line << LINE_SEPARATOR
+        }
     }
 
     private void indent() {

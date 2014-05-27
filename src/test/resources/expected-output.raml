@@ -8,6 +8,27 @@ version: 42
   post:
   /foo1:
     post:
+      body:
+        application/json:
+          schema: |
+            {
+                "type": "object",
+                "properties": {
+                    "foo": {
+                        "type": "string",
+                        "required": true
+                    },
+                    "bar": {
+                        "type": "string",
+                        "required": false
+                    }
+                }
+            }
+          example: |
+            {
+                "foo": "xxx",
+                "bar": "yyy"
+            }
     delete:
       description: delete foo1
   /foo2:
