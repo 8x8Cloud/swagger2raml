@@ -28,3 +28,7 @@ review the [guidelines for contributing](CONTRIBUTING.md).
 * [Bug reports](CONTRIBUTING.md#bugs)
 * [Feature requests](CONTRIBUTING.md#features)
 * [Pull requests](CONTRIBUTING.md#pull-requests)
+
+### License
+
+* [Apache 2](LICENSE.md)
