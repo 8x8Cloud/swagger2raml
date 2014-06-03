@@ -1,10 +1,11 @@
 package com._8x8.cloud.swagger2raml.writer
 
-import com._8x8.cloud.swagger2raml.model.Path
-import groovy.transform.TypeChecked
 import com._8x8.cloud.swagger2raml.model.Method
+import com._8x8.cloud.swagger2raml.model.Path
 import com._8x8.cloud.swagger2raml.model.QueryParameter
 import com._8x8.cloud.swagger2raml.model.Resource
+import groovy.json.JsonBuilder
+import groovy.transform.TypeChecked
 
 /**
  * @author Jacek Kunicki
@@ -56,12 +57,20 @@ class RamlWriter {
                     write("${method.body.contentType}:")
                     indented {
                         write('schema: |')
+                        def schema = [
+                                type      : method.body.schema.type,
+                                properties: SchemaPropertyExtractor.extractSchemaProperties(method.body.schema.properties)
+                        ]
+
                         indented {
-                            write(method.body.schema)
+                            write(new JsonBuilder(schema).toPrettyString())
                         }
-                        write('example: |')
-                        indented {
-                            write(method.body.example)
+
+                        if (method.body.example) {
+                            write('example: |')
+                            indented {
+                                write(method.body.example)
+                            }
                         }
                     }
                 }

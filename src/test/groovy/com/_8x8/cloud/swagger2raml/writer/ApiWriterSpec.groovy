@@ -2,12 +2,14 @@ package com._8x8.cloud.swagger2raml.writer
 
 import com._8x8.cloud.swagger2raml.model.Api
 import com._8x8.cloud.swagger2raml.model.Body
+import com._8x8.cloud.swagger2raml.model.BodySchema
 import com._8x8.cloud.swagger2raml.model.Delete
 import com._8x8.cloud.swagger2raml.model.Get
 import com._8x8.cloud.swagger2raml.model.Post
 import com._8x8.cloud.swagger2raml.model.Put
 import com._8x8.cloud.swagger2raml.model.QueryParameter
 import com._8x8.cloud.swagger2raml.model.Resource
+import com._8x8.cloud.swagger2raml.model.SchemaProperty
 import groovy.json.JsonBuilder
 import org.raml.parser.visitor.RamlValidationService
 import spock.lang.Shared
@@ -36,19 +38,12 @@ class ApiWriterSpec extends Specification {
 
     def 'should write API to RAML file'() {
         setup:
-        def bodySchema = [
-                type      : 'object',
+        BodySchema bodySchema = new BodySchema(
                 properties: [
-                        foo: [
-                                type    : 'string',
-                                required: true
-                        ],
-                        bar: [
-                                type    : 'string',
-                                required: false
-                        ]
+                        new SchemaProperty(name: 'foo', type: 'string'),
+                        new SchemaProperty(name: 'bar', type: 'string', required: false)
                 ]
-        ]
+        )
 
         def bodyExample = [
                 foo: 'xxx',
@@ -64,7 +59,7 @@ class ApiWriterSpec extends Specification {
                                         methods: [
                                                 new Post(
                                                         body: new Body(
-                                                                schema: new JsonBuilder(bodySchema).toPrettyString(),
+                                                                schema: bodySchema,
                                                                 example: new JsonBuilder(bodyExample).toPrettyString()
                                                         )
                                                 ),

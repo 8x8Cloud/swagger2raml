@@ -6,5 +6,6 @@ package com._8x8.cloud.swagger2raml.model
 class Body {
 
     String contentType = 'application/json'
-    String schema, example
+    BodySchema schema
+    String example
 }

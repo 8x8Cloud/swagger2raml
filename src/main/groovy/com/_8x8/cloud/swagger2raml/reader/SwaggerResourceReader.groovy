@@ -1,14 +1,27 @@
 package com._8x8.cloud.swagger2raml.reader
 
+import com._8x8.cloud.swagger2raml.model.Body
+import com._8x8.cloud.swagger2raml.model.BodySchema
+import com._8x8.cloud.swagger2raml.model.DirectModelProperty
 import com._8x8.cloud.swagger2raml.model.Method
+import com._8x8.cloud.swagger2raml.model.Model
+import com._8x8.cloud.swagger2raml.model.ModelPropertyType
+import com._8x8.cloud.swagger2raml.model.ObjectSchemaProperty
 import com._8x8.cloud.swagger2raml.model.Path
+import com._8x8.cloud.swagger2raml.model.SchemaPropertyType
 import com._8x8.cloud.swagger2raml.model.QueryParameter
+import com._8x8.cloud.swagger2raml.model.ReferenceModelProperty
 import com._8x8.cloud.swagger2raml.model.Resource
+import com._8x8.cloud.swagger2raml.model.SchemaProperty
+
+import java.util.regex.Pattern
 
 /**
  * @author Jacek Kunicki
  */
 class SwaggerResourceReader extends SwaggerReader<Resource> {
+
+    private static final Pattern OPTIONAL_PATTERN = ~/Optional«(\w+)»/
 
     @Override
     Resource readFromUrl(String url) {
@@ -25,23 +38,73 @@ class SwaggerResourceReader extends SwaggerReader<Resource> {
     private static Resource readFromJson(json) {
         def rootPath = json.apis.first().path.split('/').first()
         Resource root = new Resource(path: rootPath)
+        Map<String, Model> models = extractModels(json)
         json.apis.each { swaggerResource ->
-            Resource newResource = new Resource(methods: extractMethods(swaggerResource))
+            Resource newResource = new Resource(methods: extractMethods(swaggerResource, models))
             addResource(root, new Path(swaggerResource.path), newResource)
         }
         return root
     }
 
-    private static Collection<Method> extractMethods(swaggerResource) {
+    private static Map<String, Model> extractModels(json) {
+        return json.models?.values()?.collect { modelValues ->
+            return new Model(
+                    id: modelValues.id,
+                    properties: modelValues.properties.collectEntries { property ->
+                        ModelPropertyType modelPropertyType = property.value.type ?
+                                new DirectModelProperty(name: property.value.type) :
+                                new ReferenceModelProperty(name: property.value.$ref)
+
+                        return [(property.key): modelPropertyType]
+                    } as Map<String, ModelPropertyType>
+            )
+        }?.collectEntries { [(it.id): it] }
+    }
+
+    private static Collection<Method> extractMethods(swaggerResource, Map<String, Model> models) {
         return swaggerResource.operations.collect { operation ->
             Method method = Method.forType(operation.method)
             method.description = operation.summary
             method.queryParameters = extractQueryParameters(operation)
+
+            def bodyParameter = operation.parameters.find { it.paramType == 'body' }
+            if (bodyParameter) {
+                method.body = extractBody(bodyParameter, models)
+            }
+
             return method
         }
     }
 
-    private static Collection<QueryParameter> extractQueryParameters(Object operation) {
+    private static Body extractBody(bodyParameter, Map<String, Model> models) {
+        Collection<SchemaProperty> schemaProperties = []
+        if (models && models[bodyParameter.type]) {
+            schemaProperties = extractSchemaProperties(models[bodyParameter.type].properties, models)
+        }
+
+        return new Body(schema: new BodySchema(properties: schemaProperties))
+    }
+
+    private static Collection<SchemaProperty> extractSchemaProperties(Map<String, ModelPropertyType> modelPropertiesByName, Map<String, Model> models) {
+        return modelPropertiesByName.collect { property ->
+            SchemaProperty schemaProperty = new SchemaProperty(name: property.key)
+            if (property.value instanceof ReferenceModelProperty) {
+                if (property.value.name.matches(OPTIONAL_PATTERN)) {
+                    String actualType = property.value.name.replaceAll(OPTIONAL_PATTERN, '$1')
+                    schemaProperty.type = SchemaPropertyType.optionalPrimitive(actualType)
+                } else {
+                    def x = extractSchemaProperties(models.get(property.value.name).properties, models)
+                    schemaProperty.type = new ObjectSchemaProperty(properties: x.collectEntries { [(it.name): it.type] })
+                }
+            } else {
+                schemaProperty.type = SchemaPropertyType.primitive(property.value.name)
+            }
+
+            return schemaProperty
+        }
+    }
+
+    private static Collection<QueryParameter> extractQueryParameters(operation) {
         return operation.parameters.findAll { it.paramType == 'query' }.collect { parameter ->
             QueryParameter queryParameter = new QueryParameter(
                     name: parameter.name,

@@ -1,12 +1,17 @@
 package com._8x8.cloud.swagger2raml.reader
 
 import com._8x8.cloud.swagger2raml.ResourceSpecBase
+import com._8x8.cloud.swagger2raml.model.Body
 import com._8x8.cloud.swagger2raml.model.Delete
+import com._8x8.cloud.swagger2raml.model.DirectModelProperty
 import com._8x8.cloud.swagger2raml.model.Get
+import com._8x8.cloud.swagger2raml.model.Model
 import com._8x8.cloud.swagger2raml.model.Path
 import com._8x8.cloud.swagger2raml.model.Post
 import com._8x8.cloud.swagger2raml.model.Put
+import com._8x8.cloud.swagger2raml.model.ReferenceModelProperty
 import com._8x8.cloud.swagger2raml.model.Resource
+import groovy.json.JsonBuilder
 
 /**
  * @author Jacek Kunicki
@@ -65,5 +70,65 @@ class SwaggerResourceReaderSpec extends ResourceSpecBase {
             childByPath('/f/h').hasPath('h').hasNoChildren()
         }
     }
-}
 
+    def 'should extract nested models'() {
+        setup:
+        def resource = [
+                models: [
+                        foo: [
+                                id: 'foo',
+                                properties: [
+                                        p: [type: 'string'],
+                                        q: [$ref: 'bar']
+                                ]
+                        ],
+                        bar: [
+                                id: 'bar',
+                                properties: [
+                                        r: [type: 'string'],
+                                        s: [type: 'boolean']
+                                ]
+                        ]
+                ]
+        ]
+
+
+        when:
+        Map<String, Model> models = SwaggerResourceReader.extractModels(new JsonBuilder(resource).getContent())
+
+        then:
+        models.size() == 2
+        with(models.foo) {
+            properties.p instanceof DirectModelProperty
+            properties.p.name == 'string'
+            properties.q instanceof ReferenceModelProperty
+        }
+    }
+
+    def 'should extract method body with complex model'() {
+        setup:
+        def models = [
+                testModel: new Model(
+                        id: 'testModel',
+                        fields: [
+                                foo: 'string',
+                                bar: 'boolean'
+                        ]
+                )
+        ]
+
+        def bodyParameter = [
+                name: 'testParam',
+                type: 'testModel'
+        ]
+
+        when:
+        Body body = SwaggerResourceReader.extractBody(bodyParameter, models)
+
+        then:
+        with(body.schema.properties) {
+            it.find { it.name == 'foo' }.type == 'string'
+            it.find { it.name == 'bar' }.type == 'boolean'
+        }
+    }
+}
