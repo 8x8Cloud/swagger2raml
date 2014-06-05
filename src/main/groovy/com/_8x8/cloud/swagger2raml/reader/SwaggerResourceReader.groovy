@@ -4,16 +4,17 @@ import com._8x8.cloud.swagger2raml.model.ArrayModelProperty
 import com._8x8.cloud.swagger2raml.model.Body
 import com._8x8.cloud.swagger2raml.model.BodySchema
 import com._8x8.cloud.swagger2raml.model.DirectModelProperty
+import com._8x8.cloud.swagger2raml.model.EnumModelProperty
 import com._8x8.cloud.swagger2raml.model.Method
 import com._8x8.cloud.swagger2raml.model.Model
 import com._8x8.cloud.swagger2raml.model.ModelPropertyType
 import com._8x8.cloud.swagger2raml.model.ObjectSchemaProperty
 import com._8x8.cloud.swagger2raml.model.Path
-import com._8x8.cloud.swagger2raml.model.SchemaPropertyType
 import com._8x8.cloud.swagger2raml.model.QueryParameter
 import com._8x8.cloud.swagger2raml.model.ReferenceModelProperty
 import com._8x8.cloud.swagger2raml.model.Resource
 import com._8x8.cloud.swagger2raml.model.SchemaProperty
+import com._8x8.cloud.swagger2raml.model.SchemaPropertyType
 
 import java.util.regex.Pattern
 
@@ -55,6 +56,8 @@ class SwaggerResourceReader extends SwaggerReader<Resource> {
                         ModelPropertyType modelPropertyType
                         if (property.value.$ref) {
                             modelPropertyType = new ReferenceModelProperty(name: property.value.$ref)
+                        } else if (property.value.enum) {
+                            modelPropertyType = new EnumModelProperty(allowedValues: property.value.enum)
                         } else if (property.value.type == 'array') {
                             modelPropertyType = new ArrayModelProperty(name: property.value.type)
 
@@ -63,7 +66,6 @@ class SwaggerResourceReader extends SwaggerReader<Resource> {
                             } else {
                                 modelPropertyType.itemType = new ReferenceModelProperty(name: property.value.items.$ref)
                             }
-
                         } else {
                             modelPropertyType = new DirectModelProperty(name: property.value.type)
                         }
@@ -122,6 +124,9 @@ class SwaggerResourceReader extends SwaggerReader<Resource> {
                 } else {
                     schemaProperty.type = SchemaPropertyType.arrayOf(SchemaPropertyType.primitive(arrayModelProperty.itemType.name))
                 }
+            } else if (property.value instanceof EnumModelProperty) {
+                EnumModelProperty enumModelProperty = property.value as EnumModelProperty
+                schemaProperty.type = SchemaPropertyType.enumOf(enumModelProperty.allowedValues)
             } else {
                 schemaProperty.type = SchemaPropertyType.primitive(property.value.name)
             }

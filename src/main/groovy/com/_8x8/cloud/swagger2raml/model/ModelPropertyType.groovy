@@ -17,3 +17,7 @@ class ReferenceModelProperty extends ModelPropertyType {
 class ArrayModelProperty extends ModelPropertyType {
     ModelPropertyType itemType
 }
+
+class EnumModelProperty extends ModelPropertyType {
+    Collection<String> allowedValues
+}

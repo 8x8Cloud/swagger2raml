@@ -19,6 +19,10 @@ abstract class SchemaPropertyType {
     static SchemaPropertyType arrayOf(SchemaPropertyType type) {
         return new ArraySchemaProperty(name: 'array', itemType: type)
     }
+
+    static SchemaPropertyType enumOf(Collection<String> allowedValues) {
+        return new EnumSchemaProperty(name: 'enum', allowedValues: allowedValues)
+    }
 }
 
 class PrimitiveSchemaProperty extends SchemaPropertyType {
@@ -30,4 +34,8 @@ class ObjectSchemaProperty extends SchemaPropertyType {
 
 class ArraySchemaProperty extends SchemaPropertyType {
     SchemaPropertyType itemType
+}
+
+class EnumSchemaProperty extends SchemaPropertyType {
+    Collection<String> allowedValues
 }

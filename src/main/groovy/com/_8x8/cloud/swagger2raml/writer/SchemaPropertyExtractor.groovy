@@ -1,6 +1,7 @@
 package com._8x8.cloud.swagger2raml.writer
 
 import com._8x8.cloud.swagger2raml.model.ArraySchemaProperty
+import com._8x8.cloud.swagger2raml.model.EnumSchemaProperty
 import com._8x8.cloud.swagger2raml.model.ObjectSchemaProperty
 import com._8x8.cloud.swagger2raml.model.PrimitiveSchemaProperty
 import com._8x8.cloud.swagger2raml.model.SchemaProperty
@@ -16,6 +17,8 @@ class SchemaPropertyExtractor {
                 return extractPrimitiveProperty(schemaProperty)
             } else if (schemaProperty.type instanceof ArraySchemaProperty) {
                 return extractArrayProperty(schemaProperty)
+            } else if (schemaProperty.type instanceof EnumSchemaProperty) {
+                return extractEnumProperty(schemaProperty)
             } else {
                 return extractObjectProperty(schemaProperty)
             }
@@ -28,7 +31,7 @@ class SchemaPropertyExtractor {
 
         if (arraySchemaProperty.itemType instanceof ObjectSchemaProperty) {
             itemSchema = [
-                    type: arraySchemaProperty.itemType.name,
+                    type      : arraySchemaProperty.itemType.name,
                     properties: extractSchemaPropertyType(arraySchemaProperty.itemType as ObjectSchemaProperty)
             ]
         } else {
@@ -56,12 +59,19 @@ class SchemaPropertyExtractor {
 
     private static extractSchemaPropertyType(ObjectSchemaProperty objectSchemaProperty) {
         return objectSchemaProperty.properties.collectEntries {
-            [
-                    (it.key): [
-                            type    : it.value.name,
-                            required: it.value.required
-                    ]
+            def value = [
+                    type    : it.value.name,
+                    required: it.value.required
             ]
+
+            if (it.value instanceof EnumSchemaProperty) {
+                value.remove('type')
+                value += [
+                        enum: (it.value as EnumSchemaProperty).allowedValues
+                ]
+            }
+
+            return [(it.key): value]
         }
     }
 
@@ -70,6 +80,14 @@ class SchemaPropertyExtractor {
                 (schemaProperty.name): [
                         type    : schemaProperty.type.name,
                         required: schemaProperty.type.required
+                ]
+        ]
+    }
+
+    private static extractEnumProperty(SchemaProperty schemaProperty) {
+        return [
+                (schemaProperty.name): [
+                        enum: (schemaProperty.type as EnumSchemaProperty).allowedValues
                 ]
         ]
     }
