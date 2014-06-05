@@ -27,6 +27,17 @@ class SchemaPropertyExtractor {
 
     private static extractArrayProperty(SchemaProperty schemaProperty) {
         ArraySchemaProperty arraySchemaProperty = schemaProperty.type as ArraySchemaProperty
+        def itemSchema = extractArrayItemSchema(arraySchemaProperty)
+
+        return [
+                (schemaProperty.name): [
+                        type: schemaProperty.type.name,
+                        item: itemSchema
+                ]
+        ]
+    }
+
+    private static extractArrayItemSchema(ArraySchemaProperty arraySchemaProperty) {
         def itemSchema
 
         if (arraySchemaProperty.itemType instanceof ObjectSchemaProperty) {
@@ -39,13 +50,7 @@ class SchemaPropertyExtractor {
                     type: arraySchemaProperty.itemType.name
             ]
         }
-
-        return [
-                (schemaProperty.name): [
-                        type: schemaProperty.type.name,
-                        item: itemSchema
-                ]
-        ]
+        return itemSchema
     }
 
     private static extractObjectProperty(SchemaProperty schemaProperty) {
@@ -61,7 +66,6 @@ class SchemaPropertyExtractor {
         return objectSchemaProperty.properties.collectEntries {
             def value = [
                     type    : it.value.name,
-                    required: it.value.required
             ]
 
             if (it.value instanceof EnumSchemaProperty) {
@@ -69,6 +73,12 @@ class SchemaPropertyExtractor {
                 value += [
                         enum: (it.value as EnumSchemaProperty).allowedValues
                 ]
+            } else if (it.value instanceof ArraySchemaProperty) {
+                value += [
+                        item: extractArrayItemSchema(it.value as ArraySchemaProperty)
+                ]
+            } else {
+                value += [required: it.value.required]
             }
 
             return [(it.key): value]
