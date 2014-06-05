@@ -10,6 +10,7 @@ import com._8x8.cloud.swagger2raml.model.Put
 import com._8x8.cloud.swagger2raml.model.QueryParameter
 import com._8x8.cloud.swagger2raml.model.Resource
 import com._8x8.cloud.swagger2raml.model.SchemaProperty
+import com._8x8.cloud.swagger2raml.model.SchemaPropertyType
 import groovy.json.JsonBuilder
 import org.raml.parser.visitor.RamlValidationService
 import spock.lang.Shared
@@ -40,8 +41,8 @@ class ApiWriterSpec extends Specification {
         setup:
         BodySchema bodySchema = new BodySchema(
                 properties: [
-                        new SchemaProperty(name: 'foo', type: 'string'),
-                        new SchemaProperty(name: 'bar', type: 'string', required: false)
+                        new SchemaProperty(name: 'foo', type: SchemaPropertyType.primitive('string')),
+                        new SchemaProperty(name: 'bar', type: SchemaPropertyType.optionalPrimitive('string'))
                 ]
         )
 

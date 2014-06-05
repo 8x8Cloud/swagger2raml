@@ -1,5 +1,6 @@
 package com._8x8.cloud.swagger2raml.reader
 
+import com._8x8.cloud.swagger2raml.model.ArrayModelProperty
 import com._8x8.cloud.swagger2raml.model.Body
 import com._8x8.cloud.swagger2raml.model.BodySchema
 import com._8x8.cloud.swagger2raml.model.DirectModelProperty
@@ -51,9 +52,21 @@ class SwaggerResourceReader extends SwaggerReader<Resource> {
             return new Model(
                     id: modelValues.id,
                     properties: modelValues.properties.collectEntries { property ->
-                        ModelPropertyType modelPropertyType = property.value.type ?
-                                new DirectModelProperty(name: property.value.type) :
-                                new ReferenceModelProperty(name: property.value.$ref)
+                        ModelPropertyType modelPropertyType
+                        if (property.value.$ref) {
+                            modelPropertyType = new ReferenceModelProperty(name: property.value.$ref)
+                        } else if (property.value.type == 'array') {
+                            modelPropertyType = new ArrayModelProperty(name: property.value.type)
+
+                            if (property.value.items.type) {
+                                modelPropertyType.itemType = new DirectModelProperty(name: property.value.items.type)
+                            } else {
+                                modelPropertyType.itemType = new ReferenceModelProperty(name: property.value.items.$ref)
+                            }
+
+                        } else {
+                            modelPropertyType = new DirectModelProperty(name: property.value.type)
+                        }
 
                         return [(property.key): modelPropertyType]
                     } as Map<String, ModelPropertyType>
@@ -93,8 +106,21 @@ class SwaggerResourceReader extends SwaggerReader<Resource> {
                     String actualType = property.value.name.replaceAll(OPTIONAL_PATTERN, '$1')
                     schemaProperty.type = SchemaPropertyType.optionalPrimitive(actualType)
                 } else {
-                    def x = extractSchemaProperties(models.get(property.value.name).properties, models)
-                    schemaProperty.type = new ObjectSchemaProperty(properties: x.collectEntries { [(it.name): it.type] })
+                    Collection<SchemaProperty> schemaProperties = extractSchemaProperties(models.get(property.value.name).properties, models)
+                    schemaProperty.type = new ObjectSchemaProperty(properties: schemaProperties.collectEntries {
+                        [(it.name): it.type]
+                    })
+                }
+            } else if (property.value instanceof ArrayModelProperty) {
+                ArrayModelProperty arrayModelProperty = property.value as ArrayModelProperty
+                if (arrayModelProperty.itemType instanceof ReferenceModelProperty) {
+                    Collection<SchemaProperty> schemaProperties = extractSchemaProperties(models.get(arrayModelProperty.itemType.name).properties, models)
+                    ObjectSchemaProperty objectSchemaProperty = new ObjectSchemaProperty(properties: schemaProperties.collectEntries {
+                        [(it.name): it.type]
+                    })
+                    schemaProperty.type = SchemaPropertyType.arrayOf(objectSchemaProperty)
+                } else {
+                    schemaProperty.type = SchemaPropertyType.arrayOf(SchemaPropertyType.primitive(arrayModelProperty.itemType.name))
                 }
             } else {
                 schemaProperty.type = SchemaPropertyType.primitive(property.value.name)

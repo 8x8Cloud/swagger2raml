@@ -13,3 +13,7 @@ class DirectModelProperty extends ModelPropertyType {
 
 class ReferenceModelProperty extends ModelPropertyType {
 }
+
+class ArrayModelProperty extends ModelPropertyType {
+    ModelPropertyType itemType
+}

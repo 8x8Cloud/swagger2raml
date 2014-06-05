@@ -110,9 +110,9 @@ class SwaggerResourceReaderSpec extends ResourceSpecBase {
         def models = [
                 testModel: new Model(
                         id: 'testModel',
-                        fields: [
-                                foo: 'string',
-                                bar: 'boolean'
+                        properties: [
+                                foo: new DirectModelProperty(name: 'string'),
+                                bar: new DirectModelProperty(name: 'boolean')
                         ]
                 )
         ]
@@ -127,8 +127,8 @@ class SwaggerResourceReaderSpec extends ResourceSpecBase {
 
         then:
         with(body.schema.properties) {
-            it.find { it.name == 'foo' }.type == 'string'
-            it.find { it.name == 'bar' }.type == 'boolean'
+            it.find { it.name == 'foo' }.type.name == 'string'
+            it.find { it.name == 'bar' }.type.name == 'boolean'
         }
     }
 }
