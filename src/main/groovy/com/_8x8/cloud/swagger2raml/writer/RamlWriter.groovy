@@ -4,6 +4,7 @@ import com._8x8.cloud.swagger2raml.model.Method
 import com._8x8.cloud.swagger2raml.model.Path
 import com._8x8.cloud.swagger2raml.model.QueryParameter
 import com._8x8.cloud.swagger2raml.model.Resource
+import com._8x8.cloud.swagger2raml.model.SchemaProperty
 import groovy.json.JsonBuilder
 import groovy.transform.TypeChecked
 
@@ -59,7 +60,7 @@ class RamlWriter {
                         write('schema: |')
                         def schema = [
                                 type      : method.body.schema.type,
-                                properties: SchemaPropertyExtractor.extractSchemaProperties(method.body.schema.properties)
+                                properties: method.body.schema.properties.collectEntries { SchemaProperty p -> p.extractSchema()}
                         ]
 
                         indented {

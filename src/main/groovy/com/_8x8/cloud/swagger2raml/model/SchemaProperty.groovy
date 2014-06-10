@@ -7,4 +7,8 @@ class SchemaProperty {
 
     String name
     SchemaPropertyType type
+
+    def extractSchema() {
+        return [(name): type.extractSchema()]
+    }
 }
