@@ -53,27 +53,25 @@ class SwaggerResourceReader extends SwaggerReader<Resource> {
             return new Model(
                     id: modelValues.id,
                     properties: modelValues.properties.collectEntries { property ->
-                        ModelPropertyType modelPropertyType
-                        if (property.value.$ref) {
-                            modelPropertyType = new ReferenceModelProperty(name: property.value.$ref)
-                        } else if (property.value.enum) {
-                            modelPropertyType = new EnumModelProperty(allowedValues: property.value.enum)
-                        } else if (property.value.type == 'array') {
-                            modelPropertyType = new ArrayModelProperty(name: property.value.type)
-
-                            if (property.value.items.type) {
-                                modelPropertyType.itemType = new DirectModelProperty(name: property.value.items.type)
-                            } else {
-                                modelPropertyType.itemType = new ReferenceModelProperty(name: property.value.items.$ref)
-                            }
-                        } else {
-                            modelPropertyType = new DirectModelProperty(name: property.value.type)
-                        }
-
-                        return [(property.key): modelPropertyType]
+                        return [(property.key): extractModelPropertyType(property.value)]
                     } as Map<String, ModelPropertyType>
             )
         }?.collectEntries { [(it.id): it] }
+    }
+
+    private static ModelPropertyType extractModelPropertyType(propertyValue) {
+        if (propertyValue.$ref) {
+            return new ReferenceModelProperty(name: propertyValue.$ref)
+        } else if (propertyValue.enum) {
+            return new EnumModelProperty(allowedValues: propertyValue.enum)
+        } else if (propertyValue.type == 'array') {
+            return new ArrayModelProperty(
+                    name: propertyValue.type,
+                    itemType: extractModelPropertyType(propertyValue.items)
+            )
+        } else {
+            return new DirectModelProperty(name: propertyValue.type)
+        }
     }
 
     private static Collection<Method> extractMethods(swaggerResource, Map<String, Model> models) {
