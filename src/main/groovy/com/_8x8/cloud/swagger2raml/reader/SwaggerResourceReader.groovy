@@ -23,8 +23,6 @@ import java.util.regex.Pattern
  */
 class SwaggerResourceReader extends SwaggerReader<Resource> {
 
-    private static final Pattern OPTIONAL_PATTERN = ~/Optional«(\w+)»/
-
     @Override
     Resource readFromUrl(String url) {
         def json = jsonSlurper.parse(new URL(url))
@@ -99,37 +97,8 @@ class SwaggerResourceReader extends SwaggerReader<Resource> {
     }
 
     private static Collection<SchemaProperty> extractSchemaProperties(Map<String, ModelPropertyType> modelPropertiesByName, Map<String, Model> models) {
-        return modelPropertiesByName.collect { property ->
-            SchemaProperty schemaProperty = new SchemaProperty(name: property.key)
-            if (property.value instanceof ReferenceModelProperty) {
-                if (property.value.name.matches(OPTIONAL_PATTERN)) {
-                    String actualType = property.value.name.replaceAll(OPTIONAL_PATTERN, '$1')
-                    schemaProperty.type = SchemaPropertyType.optionalPrimitive(actualType)
-                } else {
-                    Collection<SchemaProperty> schemaProperties = extractSchemaProperties(models.get(property.value.name).properties, models)
-                    schemaProperty.type = new ObjectSchemaProperty(properties: schemaProperties.collectEntries {
-                        [(it.name): it.type]
-                    })
-                }
-            } else if (property.value instanceof ArrayModelProperty) {
-                ArrayModelProperty arrayModelProperty = property.value as ArrayModelProperty
-                if (arrayModelProperty.itemType instanceof ReferenceModelProperty) {
-                    Collection<SchemaProperty> schemaProperties = extractSchemaProperties(models.get(arrayModelProperty.itemType.name).properties, models)
-                    ObjectSchemaProperty objectSchemaProperty = new ObjectSchemaProperty(properties: schemaProperties.collectEntries {
-                        [(it.name): it.type]
-                    })
-                    schemaProperty.type = SchemaPropertyType.arrayOf(objectSchemaProperty)
-                } else {
-                    schemaProperty.type = SchemaPropertyType.arrayOf(SchemaPropertyType.primitive(arrayModelProperty.itemType.name))
-                }
-            } else if (property.value instanceof EnumModelProperty) {
-                EnumModelProperty enumModelProperty = property.value as EnumModelProperty
-                schemaProperty.type = SchemaPropertyType.enumOf(enumModelProperty.allowedValues)
-            } else {
-                schemaProperty.type = SchemaPropertyType.primitive(property.value.name)
-            }
-
-            return schemaProperty
+        return modelPropertiesByName.collect {
+            return new SchemaProperty(name: it.key, type: it.value.toSchemaProperty(models))
         }
     }
 
