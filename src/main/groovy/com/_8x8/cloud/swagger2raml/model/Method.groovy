@@ -29,3 +29,7 @@ class Put extends Method {
 
 class Delete extends Method {
 }
+
+class Patch extends Method {
+
+}
