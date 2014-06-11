@@ -2,9 +2,10 @@ import com.github.jengelman.gradle.plugins.shadow.transformers.ManifestResourceT
 
 apply plugin: 'groovy'
 apply plugin: 'shadow'
+apply plugin: 'maven'
 
 group = 'com._8x8.cloud.swagger2raml'
-version = '1.0'
+version = '1.0-SNAPSHOT'
 
 buildscript {
     repositories {
