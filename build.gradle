@@ -16,6 +16,16 @@ buildscript {
     }
 }
 
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: 'https://nexus.softwaremill.com/content/repositories/snapshots') {
+                authentication(userName: smlNexusUser, password: smlNexusPassword)
+            }
+        }
+    }
+}
+
 repositories {
     mavenCentral()
     maven { url 'http://oss.sonatype.org/content/groups/public/' }
