@@ -16,11 +16,13 @@ buildscript {
     }
 }
 
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(url: 'https://nexus.softwaremill.com/content/repositories/snapshots') {
-                authentication(userName: smlNexusUser, password: smlNexusPassword)
+if (project.hasProperty('smlNexusUser') && project.hasProperty('smlNexusPassword')) {
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(url: 'https://nexus.softwaremill.com/content/repositories/snapshots') {
+                    authentication(userName: smlNexusUser, password: smlNexusPassword)
+                }
             }
         }
     }
