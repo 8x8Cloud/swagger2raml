@@ -31,5 +31,13 @@ class Delete extends Method {
 }
 
 class Patch extends Method {
+}
 
+class Head extends Method {
+}
+
+class Options extends Method {
+}
+
+class Trace extends Method {
 }
