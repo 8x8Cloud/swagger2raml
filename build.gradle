@@ -52,3 +52,7 @@ shadow {
         attributes "Main-Class": 'com._8x8.cloud.swagger2raml.RamlGenerator'
     }
 }
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.0'
+}
