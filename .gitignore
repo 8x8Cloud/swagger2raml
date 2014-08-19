@@ -1,0 +1,44 @@
+*.class
+
+# Package Files #
+*.war
+*.ear
+*.zip
+
+# build files #
+*.tmp
+*.md5
+
+# runtime files #
+*.pid
+*.log
+*.log.*
+
+bin/*
+
+.project
+
+src/main/java/com/test/
+src/main/java/vmware/*
+
+src/main/java/test/CleanUpOrg.java
+src/main/java/test/ImportVmAsvAppTemplate.java
+src/main/java/test/ResizeVdc.java
+src/main/java/test/VspAPI.java
+
+
+.idea
+/bin
+target/
+*.iml
+.classpath
+.gitignore
+compile.sh
+.classpath
+src/main/resources/git.properties
+dependency-reduced-pom.xml
+.gradle/
+build/
+out/*
+argfile*
+src/main/resources/snapshot.properties
