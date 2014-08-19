@@ -1,9 +1,18 @@
+.gradle
+build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
 *.class
 
 # Package Files #
+*.jar
 *.war
 *.ear
-*.zip
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
 
 # build files #
 *.tmp
@@ -14,31 +23,10 @@
 *.log
 *.log.*
 
-bin/*
-
 .project
-
-src/main/java/com/test/
-src/main/java/vmware/*
-
-src/main/java/test/CleanUpOrg.java
-src/main/java/test/ImportVmAsvAppTemplate.java
-src/main/java/test/ResizeVdc.java
-src/main/java/test/VspAPI.java
-
-
 .idea
 /bin
-target/
 *.iml
 .classpath
-.gitignore
-compile.sh
-.classpath
-src/main/resources/git.properties
-dependency-reduced-pom.xml
-.gradle/
-build/
 out/*
 argfile*
-src/main/resources/snapshot.properties
