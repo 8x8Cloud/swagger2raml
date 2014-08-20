@@ -153,6 +153,10 @@ class SwaggerResourceReader extends SwaggerReader<Resource> {
         }
 
         node.methods.addAll(newResource.methods)
+
+        node.methods = node.methods.groupBy { it.class.simpleName }.values().collect { methods ->
+            return methods.inject { method1, method2 -> method1.copy().mergeWith(method2) }
+        }
     }
 }
 
