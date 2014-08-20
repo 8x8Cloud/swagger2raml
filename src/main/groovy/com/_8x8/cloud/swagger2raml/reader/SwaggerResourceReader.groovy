@@ -77,6 +77,7 @@ class SwaggerResourceReader extends SwaggerReader<Resource> {
             Method method = Method.forType(operation.method)
             method.description = operation.summary
             method.queryParameters = extractQueryParameters(operation)
+            method.responses = extractResponses(operation)
 
             def bodyParameter = operation.parameters.find { it.paramType == 'body' }
             if (bodyParameter) {
@@ -121,6 +122,10 @@ class SwaggerResourceReader extends SwaggerReader<Resource> {
 
             return queryParameter
         }
+    }
+
+    private static Collection<Body> extractResponses(operation) {
+        return operation.produces.collect { new Body(contentType: it) }
     }
 
     private static void addResource(Resource root, Path path, Resource newResource) {
