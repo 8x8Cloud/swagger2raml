@@ -41,4 +41,40 @@ class ResourceSpec extends Specification {
         where:
         path << ['/foo', '/a/d', '/a/b/c']
     }
+
+    def 'resources with same data should be equal'() {
+        setup:
+        def resource1 = new Resource(path: 'path')
+        def resource2 = new Resource(path: 'path')
+
+        when:
+        def result = resource1 == resource2
+
+        then:
+        result
+    }
+
+    def 'resources with different paths should not be equal'() {
+        setup:
+        def resource1 = new Resource(path: 'path1')
+        def resource2 = new Resource(path: 'path2')
+
+        when:
+        def result = resource1 != resource2
+
+        then:
+        result
+    }
+
+    def 'resources with different children order should not be equal'() {
+        setup:
+        def resource1 = new Resource(path: 'path', children: [new Resource(path: 'child1'), new Resource(path: 'child2')])
+        def resource2 = new Resource(path: 'path', children: [new Resource(path: 'child2'), new Resource(path: 'child1')])
+
+        when:
+        def result = resource1 != resource2
+
+        then:
+        result
+    }
 }

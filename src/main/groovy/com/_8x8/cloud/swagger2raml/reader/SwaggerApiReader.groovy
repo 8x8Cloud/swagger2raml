@@ -11,7 +11,16 @@ class SwaggerApiReader extends SwaggerReader<Api> {
     @Override
     Api readFromUrl(String url) {
         def json = jsonSlurper.parse(new URL(url))
-        return readFromJson(json)
+        def api = readFromJson(json)
+
+        def swaggerResourceReader = new SwaggerResourceReader()
+        def actualResources = api.resources.collect { Resource resource ->
+            swaggerResourceReader.readFromUrl(url + resource.path).children
+        }
+
+        def flattenedResources = flattenAndMerge(actualResources)
+        api.resources = sortResources(flattenedResources)
+        return api;
     }
 
     @Override
@@ -21,10 +30,48 @@ class SwaggerApiReader extends SwaggerReader<Api> {
     }
 
     private static Api readFromJson(json) {
-        return new Api(
+        def api = new Api(
                 title: json.info.title,
                 version: json.apiVersion,
                 resources: json.apis.collect { new Resource(path: it.path) }
         )
+
+        api.resources = sortResources(api.resources)
+
+        return api
+    }
+
+    private static Collection<Resource> sortResources(Collection<Resource> resources) {
+        def sortedResources = resources.sort { resource1, resource2 -> resource1.path.compareTo(resource2.path)
+        }
+
+        sortedResources.each { resource ->
+            resource.children = sortResources(resource.children)
+            resource.methods.sort { method1, method2 -> method1.getClass().simpleName.compareTo(method2.getClass().simpleName) }
+        }
+    }
+
+    private static Collection<Resource> flattenAndMerge(Collection<Collection<Resource>> resources) {
+        Collection<Resource> flattened = resources.flatten()
+        return merge(flattened)
+    }
+
+    private static Collection<Resource> merge(Collection<Resource> resources) {
+        Map<String, List<Resource>> resourcesByPath = resources.groupBy { it.path }
+
+        Collection<Resource> mergedResources = []
+        resourcesByPath.keySet().each { key ->
+            Resource mergedResource = new Resource(path: key)
+            resourcesByPath[key].each { resource ->
+                mergedResource.mergeWith(resource)
+            }
+            mergedResources.add(mergedResource)
+        }
+
+        mergedResources.each {
+            it.children = merge(it.children)
+        }
+
+        return mergedResources
     }
 }
