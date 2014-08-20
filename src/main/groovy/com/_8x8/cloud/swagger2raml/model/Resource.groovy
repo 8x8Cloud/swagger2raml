@@ -1,10 +1,12 @@
 package com._8x8.cloud.swagger2raml.model
 
+import groovy.transform.Canonical
 import groovy.transform.ToString
 
 /**
  * @author Jacek Kunicki
  */
+@Canonical
 @ToString(includePackage = false)
 class Resource {
 
@@ -32,27 +34,5 @@ class Resource {
         }
 
         return this
-    }
-
-    boolean equals(o) {
-        if (this.is(o)) {
-            return true
-        }
-
-        if (getClass() == o.class) {
-            Resource resource = (Resource) o
-
-            return children == resource.children && methods == resource.methods &&
-                    path == resource.path
-        }
-
-        return false
-    }
-
-    int hashCode() {
-        int result = path.hashCode()
-        result = 31 * result + children.hashCode()
-        result = 31 * result + methods.hashCode()
-        return result
     }
 }

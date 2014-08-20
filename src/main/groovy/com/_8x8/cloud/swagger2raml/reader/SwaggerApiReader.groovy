@@ -11,7 +11,7 @@ class SwaggerApiReader extends SwaggerReader<Api> {
     @Override
     Api readFromUrl(String url) {
         def json = jsonSlurper.parse(new URL(url))
-        def api = readFromJson(json)
+        Api api = readFromJson(json)
 
         def swaggerResourceReader = new SwaggerResourceReader()
         def actualResources = api.resources.collect { Resource resource ->
@@ -42,7 +42,8 @@ class SwaggerApiReader extends SwaggerReader<Api> {
     }
 
     private static Collection<Resource> sortResources(Collection<Resource> resources) {
-        def sortedResources = resources.sort { resource1, resource2 -> resource1.path.compareTo(resource2.path)
+        def sortedResources = resources.sort { resource1, resource2 ->
+            resource1.path.compareTo(resource2.path)
         }
 
         sortedResources.each { resource ->
