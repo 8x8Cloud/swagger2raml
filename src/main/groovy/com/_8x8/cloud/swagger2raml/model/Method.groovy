@@ -13,6 +13,7 @@ abstract class Method {
     String description
     Collection<QueryParameter> queryParameters
     Body body
+    Collection<Body> responses
 
     static Method forType(String type) {
         String className = Method.class.package.name + '.' + type.toLowerCase().capitalize()

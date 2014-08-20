@@ -62,7 +62,8 @@ class ApiWriterSpec extends Specification {
                                                         body: new Body(
                                                                 schema: bodySchema,
                                                                 example: new JsonBuilder(bodyExample).toPrettyString()
-                                                        )
+                                                        ),
+                                                        responses: [new Body(contentType: 'application/json')]
                                                 ),
                                                 new Delete(description: 'delete foo1')
                                         ]

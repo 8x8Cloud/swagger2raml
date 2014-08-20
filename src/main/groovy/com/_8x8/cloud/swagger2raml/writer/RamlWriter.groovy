@@ -60,7 +60,7 @@ class RamlWriter {
                         write('schema: |')
                         def schema = [
                                 type      : method.body.schema.type,
-                                properties: method.body.schema.properties.collectEntries { SchemaProperty p -> p.extractSchema()}
+                                properties: method.body.schema.properties.collectEntries { SchemaProperty p -> p.extractSchema() }
                         ]
 
                         indented {
@@ -71,6 +71,21 @@ class RamlWriter {
                             write('example: |')
                             indented {
                                 write(method.body.example)
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (method.responses) {
+                write('responses:')
+                indented {
+                    write('200:')
+                    indented {
+                        write('body:')
+                        indented {
+                            method.responses.each { response ->
+                                write("${response.contentType}:")
                             }
                         }
                     }
