@@ -50,6 +50,8 @@ class SwaggerApiReader extends SwaggerReader<Api> {
             resource.children = sortResources(resource.children)
             resource.methods.sort { method1, method2 -> method1.getClass().simpleName.compareTo(method2.getClass().simpleName) }
         }
+
+        return sortedResources
     }
 
     private static Collection<Resource> flattenAndMerge(Collection<Collection<Resource>> resources) {
