@@ -11,13 +11,21 @@ import groovy.transform.ToString
 abstract class Method {
 
     String description
-    Collection<QueryParameter> queryParameters
+    Collection<QueryParameter> queryParameters = []
     Body body
-    Collection<Body> responses
+    Collection<Body> responses = []
 
     static Method forType(String type) {
         String className = Method.class.package.name + '.' + type.toLowerCase().capitalize()
         return Method.classLoader.loadClass(className).newInstance() as Method
+    }
+
+    def copy() {
+        def method = forType(this.class.simpleName)
+        method.description = this.description
+        method.responses.addAll(responses)
+        method.queryParameters.addAll(queryParameters)
+        return method
     }
 }
 

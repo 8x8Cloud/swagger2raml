@@ -131,4 +131,19 @@ class SwaggerResourceReaderSpec extends ResourceSpecBase {
             it.find { it.name == 'bar' }.type.name == 'boolean'
         }
     }
+
+    def 'should merge same type methods put under same path'() {
+        setup:
+        def rootResource = new Resource(path: 'rootPath')
+        def newResource1 = new Resource(path: 'path', methods: [new Get(description: 'description')])
+        def newResource2 = new Resource(path: 'path', methods: [new Get(description: 'description')])
+
+        when:
+        SwaggerResourceReader.addResource(rootResource, new Path('path'), newResource1)
+        SwaggerResourceReader.addResource(rootResource, new Path('path'), newResource2)
+
+        then:
+        rootResource.children.size() == 1
+        rootResource.children[0].methods.size() == 1
+    }
 }

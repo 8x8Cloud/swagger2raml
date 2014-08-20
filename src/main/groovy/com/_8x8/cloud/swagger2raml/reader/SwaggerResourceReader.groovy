@@ -153,6 +153,20 @@ class SwaggerResourceReader extends SwaggerReader<Resource> {
         }
 
         node.methods.addAll(newResource.methods)
+
+        node.methods = node.methods.groupBy { method -> method.getClass().simpleName }.collect {
+            map ->
+                if (map.getValue().size() > 1) {
+                    return map.getValue().inject { method1, method2 ->
+                        def method = method1.copy()
+
+                        method.description += " " + method2.description
+                        method.responses.addAll(method2.responses)
+                        return method
+                    }
+                }
+                return map.getValue().get(0)
+        }
     }
 }
 
