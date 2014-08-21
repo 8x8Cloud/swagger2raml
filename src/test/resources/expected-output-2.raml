@@ -1,0 +1,596 @@
+#%RAML 0.8
+---
+title: default Title
+version: 1
+/:
+  /ad:
+    /conditionalDnsForwarder:
+      post:
+        description: createConditionalDnsForwarder
+        queryParameters:
+          vmName:
+            displayName: vmName
+            type: string
+            description: vmName
+            required: true
+          guestUid:
+            displayName: guestUid
+            type: string
+            description: guestUid
+            required: true
+          guestPwd:
+            displayName: guestPwd
+            type: string
+            description: guestPwd
+            required: true
+          sync:
+            displayName: sync
+            type: boolean
+            description: sync
+            required: false
+        body:
+          application/json:
+            schema: |
+              {
+                  "type": "object",
+                  "properties": {
+                      "remoteDnsServer": {
+                          "type": "string",
+                          "required": true
+                      },
+                      "remoteDnsServerIp": {
+                          "type": "string",
+                          "required": true
+                      },
+                      "remoteDomainName": {
+                          "type": "string",
+                          "required": true
+                      },
+                      "timeout": {
+                          "type": "string",
+                          "required": false
+                      }
+                  }
+              }
+        responses:
+          200:
+            body:
+              application/json;charset=utf-8:
+      get:
+        description: listConditionalDnsForwarders
+        queryParameters:
+          vmName:
+            displayName: vmName
+            type: string
+            description: vmName
+            required: true
+          guestUid:
+            displayName: guestUid
+            type: string
+            description: guestUid
+            required: true
+          guestPwd:
+            displayName: guestPwd
+            type: string
+            description: guestPwd
+            required: true
+        responses:
+          200:
+            body:
+              application/json;charset=utf-8:
+      /{remoteDomainName}:
+        delete:
+          description: removeConditionalDnsForwarder
+          queryParameters:
+            vmName:
+              displayName: vmName
+              type: string
+              description: vmName
+              required: true
+            guestUid:
+              displayName: guestUid
+              type: string
+              description: guestUid
+              required: true
+            guestPwd:
+              displayName: guestPwd
+              type: string
+              description: guestPwd
+              required: true
+            sync:
+              displayName: sync
+              type: boolean
+              description: sync
+              required: false
+          responses:
+            200:
+              body:
+                application/json;charset=utf-8:
+    /domain:
+      /{domain}:
+        /pc:
+          post:
+            description: addPcToDomain
+            queryParameters:
+              vmName:
+                displayName: vmName
+                type: string
+                description: vmName
+                required: true
+              guestUid:
+                displayName: guestUid
+                type: string
+                description: guestUid
+                required: true
+              guestPwd:
+                displayName: guestPwd
+                type: string
+                description: guestPwd
+                required: true
+              username:
+                displayName: username
+                type: string
+                description: username
+                required: true
+              password:
+                displayName: password
+                type: string
+                description: password
+                required: true
+            responses:
+              200:
+                body:
+                  application/json;charset=utf-8:
+      /passwordPolicy:
+        get:
+          description: getPasswordPolicy
+          queryParameters:
+            vmName:
+              displayName: vmName
+              type: string
+              description: vmName
+              required: true
+            guestUid:
+              displayName: guestUid
+              type: string
+              description: guestUid
+              required: true
+            guestPwd:
+              displayName: guestPwd
+              type: string
+              description: guestPwd
+              required: true
+          responses:
+            200:
+              body:
+                application/json;charset=utf-8:
+    /join:
+      post:
+        description: joinAd
+        queryParameters:
+          vmName:
+            displayName: vmName
+            type: string
+            description: vmName
+            required: true
+          guestUid:
+            displayName: guestUid
+            type: string
+            description: guestUid
+            required: true
+          serverName:
+            displayName: serverName
+            type: string
+            description: serverName
+            required: true
+          guestPwd:
+            displayName: guestPwd
+            type: string
+            description: guestPwd
+            required: true
+          domain:
+            displayName: domain
+            type: string
+            description: domain
+            required: true
+          domainPwd:
+            displayName: domainPwd
+            type: string
+            description: domainPwd
+            required: true
+    /group:
+      /{groupName}:
+        /member:
+          delete:
+            description: removeGroupMember
+            queryParameters:
+              vmName:
+                displayName: vmName
+                type: string
+                description: vmName
+                required: true
+              guestUid:
+                displayName: guestUid
+                type: string
+                description: guestUid
+                required: true
+              guestPwd:
+                displayName: guestPwd
+                type: string
+                description: guestPwd
+                required: true
+              memberNames:
+                displayName: memberNames
+                type: string
+                description: memberNames
+                required: true
+                repeat: true
+            responses:
+              200:
+                body:
+                  application/json;charset=utf-8:
+  /vdi:
+    /ad:
+      put:
+        description: customizeAD
+        queryParameters:
+          vmName:
+            displayName: vmName
+            type: string
+            description: vmName
+            required: true
+          guestUid:
+            displayName: guestUid
+            type: string
+            description: guestUid
+            required: true
+          guestPwd:
+            displayName: guestPwd
+            type: string
+            description: guestPwd
+            required: true
+          desktopOUName:
+            displayName: desktopOUName
+            type: string
+            description: desktopOUName
+            required: false
+          vdiAdminOU:
+            displayName: vdiAdminOU
+            type: string
+            description: vdiAdminOU
+            required: false
+          vdiUsersGroup:
+            displayName: vdiUsersGroup
+            type: string
+            description: vdiUsersGroup
+            required: false
+          vdiUsersOU:
+            displayName: vdiUsersOU
+            type: string
+            description: vdiUsersOU
+            required: false
+          logDir:
+            displayName: logDir
+            type: string
+            description: logDir
+            required: false
+          log:
+            displayName: log
+            type: string
+            description: log
+            required: false
+          scriptPath:
+            displayName: scriptPath
+            type: string
+            description: scriptPath
+            required: false
+          servicePassword:
+            displayName: servicePassword
+            type: string
+            description: servicePassword
+            required: false
+      delete:
+        description: removeAD
+        queryParameters:
+          vmName:
+            displayName: vmName
+            type: string
+            description: vmName
+            required: true
+          guestUid:
+            displayName: guestUid
+            type: string
+            description: guestUid
+            required: true
+          guestPwd:
+            displayName: guestPwd
+            type: string
+            description: guestPwd
+            required: true
+          adminPwd:
+            displayName: adminPwd
+            type: string
+            description: adminPwd
+            required: true
+      post:
+        description: installAD
+        queryParameters:
+          vmName:
+            displayName: vmName
+            type: string
+            description: vmName
+            required: true
+          guestUid:
+            displayName: guestUid
+            type: string
+            description: guestUid
+            required: true
+          guestPwd:
+            displayName: guestPwd
+            type: string
+            description: guestPwd
+            required: true
+          domainName:
+            displayName: domainName
+            type: string
+            description: domainName
+            required: true
+          siteName:
+            displayName: siteName
+            type: string
+            description: siteName
+            required: false
+          localAdminPassword:
+            displayName: localAdminPassword
+            type: string
+            description: localAdminPassword
+            required: false
+          safePassword:
+            displayName: safePassword
+            type: string
+            description: safePassword
+            required: true
+          forestLevel:
+            displayName: forestLevel
+            type: string
+            description: forestLevel
+            required: false
+          domainLevel:
+            displayName: domainLevel
+            type: string
+            description: domainLevel
+            required: false
+          databasePath:
+            displayName: databasePath
+            type: string
+            description: databasePath
+            required: false
+          logPath:
+            displayName: logPath
+            type: string
+            description: logPath
+            required: false
+          sysVolPath:
+            displayName: sysVolPath
+            type: string
+            description: sysVolPath
+            required: false
+          unattendedFile:
+            displayName: unattendedFile
+            type: string
+            description: unattendedFile
+            required: false
+      /dhcpscope:
+        post:
+          description: installADDesktopDHCPScope
+          queryParameters:
+            vmName:
+              displayName: vmName
+              type: string
+              description: vmName
+              required: true
+            guestUid:
+              displayName: guestUid
+              type: string
+              description: guestUid
+              required: true
+            guestPwd:
+              displayName: guestPwd
+              type: string
+              description: guestPwd
+              required: true
+        delete:
+          description: destroyADDesktopDHCPScope
+          queryParameters:
+            vmName:
+              displayName: vmName
+              type: string
+              description: vmName
+              required: true
+            guestUid:
+              displayName: guestUid
+              type: string
+              description: guestUid
+              required: true
+            guestPwd:
+              displayName: guestPwd
+              type: string
+              description: guestPwd
+              required: true
+        put:
+          description: createADDesktopDHCPScope
+          queryParameters:
+            vmName:
+              displayName: vmName
+              type: string
+              description: vmName
+              required: true
+            guestUid:
+              displayName: guestUid
+              type: string
+              description: guestUid
+              required: true
+            guestPwd:
+              displayName: guestPwd
+              type: string
+              description: guestPwd
+              required: true
+            scope:
+              displayName: scope
+              type: string
+              description: scope
+              required: true
+            mask:
+              displayName: mask
+              type: string
+              description: mask
+              required: true
+            ipStart:
+              displayName: ipStart
+              type: string
+              description: ipStart
+              required: true
+            ipStop:
+              displayName: ipStop
+              type: string
+              description: ipStop
+              required: true
+            gateway:
+              displayName: gateway
+              type: string
+              description: gateway
+              required: true
+            fqdn:
+              displayName: fqdn
+              type: string
+              description: fqdn
+              required: true
+            serverIp:
+              displayName: serverIp
+              type: string
+              description: serverIp
+              required: true
+            desktopOU:
+              displayName: desktopOU
+              type: string
+              description: desktopOU
+              required: true
+            inAddrApraZone:
+              displayName: inAddrApraZone
+              type: string
+              description: inAddrApraZone
+              required: true
+            domainName:
+              displayName: domainName
+              type: string
+              description: domainName
+              required: true
+    /ad_cert_service:
+      post:
+        description: installAdCertificateService
+        queryParameters:
+          vmName:
+            displayName: vmName
+            type: string
+            description: vmName
+            required: true
+          guestUid:
+            displayName: guestUid
+            type: string
+            description: guestUid
+            required: true
+          guestPwd:
+            displayName: guestPwd
+            type: string
+            description: guestPwd
+            required: true
+          caName:
+            displayName: caName
+            type: string
+            description: caName
+            required: false
+          cadnSuffix:
+            displayName: cadnSuffix
+            type: string
+            description: cadnSuffix
+            required: false
+          caType:
+            displayName: caType
+            type: string
+            description: caType
+            required: false
+          parentCA:
+            displayName: parentCA
+            type: string
+            description: parentCA
+            required: false
+          csp:
+            displayName: csp
+            type: string
+            description: csp
+            required: false
+          keyLength:
+            displayName: keyLength
+            type: string
+            description: keyLength
+            required: false
+          hashAlgorithm:
+            displayName: hashAlgorithm
+            type: string
+            description: hashAlgorithm
+            required: false
+          validForYears:
+            displayName: validForYears
+            type: string
+            description: validForYears
+            required: false
+          requestFileName:
+            displayName: requestFileName
+            type: string
+            description: requestFileName
+            required: false
+          caCertFile:
+            displayName: caCertFile
+            type: string
+            description: caCertFile
+            required: false
+          password:
+            displayName: password
+            type: string
+            description: password
+            required: false
+          thumbprint:
+            displayName: thumbprint
+            type: string
+            description: thumbprint
+            required: false
+          dbDirectory:
+            displayName: dbDirectory
+            type: string
+            description: dbDirectory
+            required: false
+          logDirectory:
+            displayName: logDirectory
+            type: string
+            description: logDirectory
+            required: false
+          overwriteExisting:
+            displayName: overwriteExisting
+            type: string
+            description: overwriteExisting
+            required: false
+          allowCSPInteraction:
+            displayName: allowCSPInteraction
+            type: string
+            description: allowCSPInteraction
+            required: false
+          force:
+            displayName: force
+            type: string
+            description: force
+            required: false
+          logDir:
+            displayName: logDir
+            type: string
+            description: logDir
+            required: false

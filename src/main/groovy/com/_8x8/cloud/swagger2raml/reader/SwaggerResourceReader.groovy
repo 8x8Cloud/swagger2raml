@@ -17,11 +17,16 @@ import com._8x8.cloud.swagger2raml.model.SchemaProperty
 import com._8x8.cloud.swagger2raml.model.SchemaPropertyType
 
 import java.util.regex.Pattern
+import groovy.util.logging.Log
 
 /**
  * @author Jacek Kunicki
  */
+@Log
 class SwaggerResourceReader extends SwaggerReader<Resource> {
+
+    private static final String[] SUPPORTED_PARAMETER_TYPES = ['string', 'number', 'integer', 'file', 'date', 'boolean', 'array']
+
 
     @Override
     Resource readFromUrl(String url) {
@@ -105,6 +110,11 @@ class SwaggerResourceReader extends SwaggerReader<Resource> {
 
     private static Collection<QueryParameter> extractQueryParameters(operation) {
         return operation.parameters.findAll { it.paramType == 'query' }.collect { parameter ->
+            if (!(parameter.type in SUPPORTED_PARAMETER_TYPES)) {
+                log.warning("Parameter type is ${parameter.type} " +
+                        "but has to be one of: ${SUPPORTED_PARAMETER_TYPES.join(', ')}. Setting string instead.")
+                parameter.type = 'string'
+            }
             QueryParameter queryParameter = new QueryParameter(
                     name: parameter.name,
                     displayName: parameter.name,
