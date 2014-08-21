@@ -20,12 +20,21 @@ abstract class Method {
         return Method.classLoader.loadClass(className).newInstance() as Method
     }
 
-    def copy() {
+    Method copy() {
         def method = forType(this.class.simpleName)
         method.description = this.description
         method.responses.addAll(responses)
         method.queryParameters.addAll(queryParameters)
         return method
+    }
+
+    Method mergeWith(Method another) {
+        if (this.class == another.class) {
+            this.description += ' ' + another.description
+            this.responses.addAll(another.responses)
+        }
+
+        return this
     }
 }
 
