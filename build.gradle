@@ -41,6 +41,10 @@ dependencies {
     testCompile 'org.raml:raml-parser:0.8.4'
 }
 
+test {
+    systemProperties 'file.encoding': 'UTF-8'
+}
+
 shadow {
     outputFile new File('dist/swagger2raml.jar')
 

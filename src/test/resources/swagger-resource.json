@@ -1,4 +1,4 @@
-{"apiVersion": "1.0", "swaggerVersion": "1.2", "basePath": "/", "resourcePath": "fix this", "produces": ["application/json;charset=utf-8"], "apis": [
+﻿{"apiVersion": "1.0", "swaggerVersion": "1.2", "basePath": "/", "resourcePath": "fix this", "produces": ["application/json;charset=utf-8"], "apis": [
     {
         "path": "/ad/conditionalDnsForwarder",
         "description": "createConditionalDnsForwarder",
@@ -26,7 +26,7 @@
                         "description": "vmName",
                         "defaultValue": "",
                         "required": true,
-                        "type": "string",
+                        "type": "SomeOtherType",
                         "paramType": "query",
                         "allowMultiple": false
                     },
