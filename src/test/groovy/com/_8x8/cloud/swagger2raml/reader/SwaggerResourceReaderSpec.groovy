@@ -132,15 +132,16 @@ class SwaggerResourceReaderSpec extends ResourceSpecBase {
         }
     }
 
-    def 'should merge same type methods put under same path'() {
+    def 'should merge same type methods put under same path with appropriate order'() {
         setup:
         def rootResource = new Resource(path: 'rootPath')
         def newResource1 = new Resource(path: 'path', methods: [new Get(description: 'description1')])
         def newResource2 = new Resource(path: 'path', methods: [new Get(description: 'description2')])
 
         when:
-        SwaggerResourceReader.addResource(rootResource, new Path('path'), newResource1)
+        // order matters!
         SwaggerResourceReader.addResource(rootResource, new Path('path'), newResource2)
+        SwaggerResourceReader.addResource(rootResource, new Path('path'), newResource1)
 
         then:
         with(rootResource.children) {
