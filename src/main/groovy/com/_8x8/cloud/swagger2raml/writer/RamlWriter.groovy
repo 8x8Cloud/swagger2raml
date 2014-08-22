@@ -21,6 +21,11 @@ class RamlWriter {
     private int indentation = 0
 
     private File file
+    private StringBuilder stringBuilder = new StringBuilder()
+
+    void save() {
+        file << stringBuilder.toString()
+    }
 
     void writeHeader() {
         write(RAML_HEADER)
@@ -114,7 +119,7 @@ class RamlWriter {
 
     private void write(String s) {
         s.split('[\r\n]+').each { String line ->
-            file << ' ' * indentation << line << LINE_SEPARATOR
+            stringBuilder << ' ' * indentation << line << LINE_SEPARATOR
         }
     }
 

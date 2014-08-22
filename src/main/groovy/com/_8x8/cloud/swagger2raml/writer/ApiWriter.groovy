@@ -16,6 +16,7 @@ class ApiWriter {
             writeHeader()
             writeProperties(api, ['title', 'baseUri', 'version'])
             writeResources(api.resources)
+            save()
         }
     }
 }
