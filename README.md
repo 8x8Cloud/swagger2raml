@@ -12,7 +12,34 @@ where:
 - `outputFileName` is an optional parameter to specify the RAML file name (default is `api.raml`),
 - `swaggerApiUrl` is the URL of the Swagger API endpoint which provides resource listing as JSON.
 
-### Java library
+### Gradle
+```groovy
+repositories {
+    maven { url 'https://nexus.softwaremill.com/content/repositories/snapshots' }
+}
+
+compile 'com._8x8.cloud.swagger2raml:swagger2raml:1.0-SNAPSHOT'
+```
+
+### Maven
+```xml
+<distributionManagement>
+    <snapshotRepository>
+        <id>snapshots</id>
+        <url>https://nexus.softwaremill.com/content/repositories/snapshots</url>
+    </snapshotRepository>
+</distributionManagement>
+
+<dependencies>
+    <dependency>
+        <groupId>com._8x8.cloud.swagger2raml</groupId>
+        <artifactId>swagger2raml</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </dependency>
+</dependencies>
+```
+
+### Bundled JAR
 Add `dist/swagger2raml.jar` to your `CLASSPATH` and use the
 ```java
 RamlGenerator.generateFromSwaggerUrl(String url, String outputFileName)
