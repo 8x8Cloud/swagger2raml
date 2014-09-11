@@ -15,7 +15,7 @@ class RamlGeneratorSpec extends Specification {
     private static final String INPUT_SWAGGER_RESOURCE_FILE = 'src/test/resources/swagger-resource.json'
     private static final String INPUT_SWAGGER_FILE = 'src/test/resources/swagger-api.json'
 
-    def "should transform properly swagger json to raml"() {
+    def "should properly transform Swagger JSON to RAML"() {
         setup:
         def resourceFile = new File(INPUT_SWAGGER_RESOURCE_FILE)
         def swaggerApiFile1 = new File(INPUT_SWAGGER_FILE)

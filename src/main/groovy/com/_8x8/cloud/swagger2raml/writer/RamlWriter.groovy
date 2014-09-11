@@ -91,6 +91,9 @@ class RamlWriter {
                         indented {
                             method.responses.each { response ->
                                 write("${response.contentType}:")
+                                indented {
+                                    write('schema: {}')
+                                }
                             }
                         }
                     }
