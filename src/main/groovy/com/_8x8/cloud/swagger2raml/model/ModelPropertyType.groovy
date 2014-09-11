@@ -1,7 +1,4 @@
 package com._8x8.cloud.swagger2raml.model
-
-import java.util.regex.Pattern
-
 /**
  * @author Jacek Kunicki
  */
@@ -22,13 +19,10 @@ class DirectModelProperty extends ModelPropertyType {
 
 class ReferenceModelProperty extends ModelPropertyType {
 
-    private static final Pattern OPTIONAL_PATTERN = ~/Optional«(\w+)»/
-
     @Override
     SchemaPropertyType toSchemaProperty(Map<String, Model> models) {
-        if (name.matches(OPTIONAL_PATTERN)) {
-            String actualType = name.replaceAll(OPTIONAL_PATTERN, '$1')
-            return SchemaPropertyType.optionalPrimitive(actualType)
+        if (OptionalSupport.isOptional(name)) {
+            return SchemaPropertyType.optionalPrimitive(OptionalSupport.actualType(name))
         } else {
             return new ObjectSchemaProperty(
                     name: name,

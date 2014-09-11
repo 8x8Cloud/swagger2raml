@@ -8,25 +8,16 @@ import com._8x8.cloud.swagger2raml.model.EnumModelProperty
 import com._8x8.cloud.swagger2raml.model.Method
 import com._8x8.cloud.swagger2raml.model.Model
 import com._8x8.cloud.swagger2raml.model.ModelPropertyType
-import com._8x8.cloud.swagger2raml.model.ObjectSchemaProperty
 import com._8x8.cloud.swagger2raml.model.Path
 import com._8x8.cloud.swagger2raml.model.QueryParameter
 import com._8x8.cloud.swagger2raml.model.ReferenceModelProperty
 import com._8x8.cloud.swagger2raml.model.Resource
 import com._8x8.cloud.swagger2raml.model.SchemaProperty
-import com._8x8.cloud.swagger2raml.model.SchemaPropertyType
-
-import java.util.regex.Pattern
-import groovy.util.logging.Log
 
 /**
  * @author Jacek Kunicki
  */
-@Log
 class SwaggerResourceReader extends SwaggerReader<Resource> {
-
-    private static final String[] SUPPORTED_PARAMETER_TYPES = ['string', 'number', 'integer', 'file', 'date', 'boolean', 'array']
-
 
     @Override
     Resource readFromUrl(String url) {
@@ -109,29 +100,7 @@ class SwaggerResourceReader extends SwaggerReader<Resource> {
     }
 
     private static Collection<QueryParameter> extractQueryParameters(operation) {
-        return operation.parameters.findAll { it.paramType == 'query' }.collect { parameter ->
-            if (!(parameter.type in SUPPORTED_PARAMETER_TYPES)) {
-                log.warning("Parameter type is ${parameter.type} " +
-                        "but has to be one of: ${SUPPORTED_PARAMETER_TYPES.join(', ')}. Setting string instead.")
-                parameter.type = 'string'
-            }
-            QueryParameter queryParameter = new QueryParameter(
-                    name: parameter.name,
-                    displayName: parameter.name,
-                    description: parameter.description,
-                    type: parameter.type,
-                    required: parameter.required
-            )
-
-            if (parameter.type == 'array') {
-                queryParameter.with {
-                    type = 'string'
-                    repeat = true
-                }
-            }
-
-            return queryParameter
-        }
+        return operation.parameters.findAll { it.paramType == 'query' }.collect { QueryParameter.create(it) }
     }
 
     private static Collection<Body> extractResponses(operation) {
