@@ -30,3 +30,5 @@ hs_err_pid*
 .classpath
 out/*
 argfile*
+src/test/resources/actual-output.raml
+src/test/resources/actual-output-2.raml
