@@ -1,12 +1,12 @@
-# swagger2raml [![Build Status](https://travis-ci.org/8x8Cloud/swagger2raml.svg?branch=master)](https://travis-ci.org/8x8Cloud/swagger2raml) 
-A utility to generate [RAML](http://raml.org/) documentation from [Swagger](https://helloreverb.com/developers/swagger) JSON. 
+# swagger2raml [![Build Status](https://travis-ci.org/8x8Cloud/swagger2raml.svg?branch=master)](https://travis-ci.org/8x8Cloud/swagger2raml)
+A utility to generate [RAML](http://raml.org/) documentation from [Swagger](https://helloreverb.com/developers/swagger) JSON.
 
 ## Usage
 swagger2raml can be used either from command line (requires Java to be on the `PATH`) or as a Java library.
 
 ### Command line
 ```
-./swagger2raml [-o outputFileName] <swaggerApiUrl>
+java -jar swagger2raml-1.0.0.jar [-o outputFileName] <swaggerApiUrl>
 ```
 where:
 - `outputFileName` is an optional parameter to specify the RAML file name (default is `api.raml`),
@@ -23,32 +23,32 @@ Grab the JAR from Maven or use the bundled one:
 #### Gradle
 ```groovy
 repositories {
-    maven { url 'https://nexus.softwaremill.com/content/repositories/snapshots' }
+    jcenter()
 }
 
-compile 'com._8x8.cloud.swagger2raml:swagger2raml:1.0-SNAPSHOT'
+compile 'com._8x8.cloud.swagger2raml:swagger2raml:1.0.0'
 ```
 
 #### Maven
 ```xml
 <distributionManagement>
-    <snapshotRepository>
-        <id>snapshots</id>
-        <url>https://nexus.softwaremill.com/content/repositories/snapshots</url>
-    </snapshotRepository>
+    <repository>
+        <id>bintraybintray</id>
+        <url>http://jcenter.bintray.com</url>
+    </repository>
 </distributionManagement>
 
 <dependencies>
     <dependency>
         <groupId>com._8x8.cloud.swagger2raml</groupId>
         <artifactId>swagger2raml</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </dependency>
 </dependencies>
 ```
 
 #### Bundled JAR
-Add `dist/swagger2raml.jar` to your `CLASSPATH`
+Add `swagger2raml-1.0.0.jar` from [Releases](https://github.com/8x8Cloud/swagger2raml/releases) to syour `CLASSPATH`
 
 ### Contributing to this project
 
