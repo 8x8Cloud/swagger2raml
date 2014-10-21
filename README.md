@@ -48,7 +48,7 @@ compile 'com._8x8.cloud.swagger2raml:swagger2raml:1.0.0'
 ```
 
 #### Bundled JAR
-Add `swagger2raml-1.0.0.jar` from [Releases](https://github.com/8x8Cloud/swagger2raml/releases) to syour `CLASSPATH`
+Add `swagger2raml-1.0.0.jar` from [Releases](https://github.com/8x8Cloud/swagger2raml/releases) to your `CLASSPATH`
 
 ### Contributing to this project
 
