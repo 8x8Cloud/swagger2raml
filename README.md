@@ -18,33 +18,20 @@ RamlGenerator.generateFromSwaggerUrl(String url, String outputFileName)
 ```
 method with the parameters as described in the command line usage.
 
-Grab the JAR from Maven or use the bundled one:
+Grab the JAR from Maven Central or use the bundled one:
 
 #### Gradle
 ```groovy
-repositories {
-    jcenter()
-}
-
-compile 'com._8x8.cloud.swagger2raml:swagger2raml:1.0.0'
+compile 'com.8x8.cloud:swagger2raml:1.0.0'
 ```
 
 #### Maven
 ```xml
-<distributionManagement>
-    <repository>
-        <id>bintraybintray</id>
-        <url>http://jcenter.bintray.com</url>
-    </repository>
-</distributionManagement>
-
-<dependencies>
-    <dependency>
-        <groupId>com._8x8.cloud.swagger2raml</groupId>
-        <artifactId>swagger2raml</artifactId>
-        <version>1.0.0</version>
-    </dependency>
-</dependencies>
+<dependency>
+    <groupId>com.8x8.cloud</groupId>
+    <artifactId>swagger2raml</artifactId>
+    <version>1.0.0</version>
+</dependency>
 ```
 
 #### Bundled JAR
