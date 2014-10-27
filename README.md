@@ -1,4 +1,4 @@
-# swagger2raml [![Build Status](https://travis-ci.org/8x8Cloud/swagger2raml.svg?branch=master)](https://travis-ci.org/8x8Cloud/swagger2raml)
+# swagger2raml [![Build Status](https://travis-ci.org/8x8Cloud/swagger2raml.svg?branch=master)](https://travis-ci.org/8x8Cloud/swagger2raml) [![Get automatic notifications about new "swagger2raml" versions](https://www.bintray.com/docs/images/bintray_badge_color.png)](https://bintray.com/8x8/maven/swagger2raml/view?source=watch)
 A utility to generate [RAML](http://raml.org/) documentation from [Swagger](https://helloreverb.com/developers/swagger) JSON.
 
 ## Usage
@@ -18,10 +18,14 @@ RamlGenerator.generateFromSwaggerUrl(String url, String outputFileName)
 ```
 method with the parameters as described in the command line usage.
 
-Grab the JAR from Maven Central or use the bundled one:
+Grab the JAR from Maven (Bintray or Maven Central repository) or use the bundled one:
 
 #### Gradle
 ```groovy
+repositories {
+    mavenCentral()
+}
+
 compile 'com.8x8.cloud:swagger2raml:1.0.0'
 ```
 
@@ -35,7 +39,7 @@ compile 'com.8x8.cloud:swagger2raml:1.0.0'
 ```
 
 #### Bundled JAR
-Add `swagger2raml-1.0.0.jar` from [Releases](https://github.com/8x8Cloud/swagger2raml/releases) to your `CLASSPATH`
+Add `swagger2raml-1.0.0-bundled.jar` from [Releases](https://github.com/8x8Cloud/swagger2raml/releases) to your `CLASSPATH`
 
 ### Contributing to this project
 
