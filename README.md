@@ -1,4 +1,4 @@
-# swagger2raml [![Build Status](https://travis-ci.org/8x8Cloud/swagger2raml.svg?branch=master)](https://travis-ci.org/8x8Cloud/swagger2raml) [![Get automatic notifications about new "swagger2raml" versions](https://www.bintray.com/docs/images/bintray_badge_color.png)](https://bintray.com/8x8/maven/swagger2raml/view?source=watch)
+# swagger2raml [![Build Status](https://travis-ci.org/8x8Cloud/swagger2raml.svg?branch=master)](https://travis-ci.org/8x8Cloud/swagger2raml) [![Windows Build Status](https://ci.appveyor.com/api/projects/status/github/8x8Cloud/swagger2raml)](https://ci.appveyor.com/project/mmatloka/swagger2raml/build/artifacts) [![Get automatic notifications about new "swagger2raml" versions](https://www.bintray.com/docs/images/bintray_badge_color.png)](https://bintray.com/8x8/maven/swagger2raml/view?source=watch)
 A utility to generate [RAML](http://raml.org/) documentation from [Swagger](https://helloreverb.com/developers/swagger) JSON.
 
 ## Usage

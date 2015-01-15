@@ -1,0 +1,12 @@
+shallow_clone: true
+
+environment:
+  matrix:
+    - JAVA_HOME: C:\Program Files\Java\jdk1.7.0
+    - JAVA_HOME: C:\Program Files\Java\jdk1.8.0
+
+build_script:
+  - gradlew.bat clean check
+
+cache:
+  - C:\Users\appveyor\.gradle
